@@ -1,0 +1,44 @@
+
+#filters{
+
+    width: 100%;
+
+}
+
+.filter{
+
+    width:33.33%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 0;
+}
+
+.margin-corection{
+ margin-left:-5px;   
+}
+
+.dropdown-toggle{
+    
+    border-radius: 0;
+    width:100% !important;   
+    height:50px;
+    text-align: left;
+    margin: 0;
+}
+
+.dropdown-menu{
+  border-radius: 0;
+    width:100% !important;   
+    text-align: left;  
+}
+
+.caret{
+    position: absolute;
+    right:15px;
+    top:22px;
+}
+
+.input-group, .form-control, .btn{
+    height:50px;
+    border-radius: 0;  
+}

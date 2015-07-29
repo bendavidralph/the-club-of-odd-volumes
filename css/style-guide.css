@@ -1,0 +1,386 @@
+
+/* 
+
+Regular font-family: HelveticaNeueLTPro-Th; 
+Bold    font-family: HelveticaNeueLTPro-Bd; 
+Italic  font-family: HelveticaNeueLTPro-ThIt;
+
+normal font colour: #3d3d3d
+
+
+
+*/
+
+body{
+    padding:0;
+    margin:0;
+    font-family:HelveticaNeueLTPro-Th; 
+    color:#3d3d3d;
+}
+
+
+a:link, a:visited{
+ color:#3d3d3d;   
+}
+
+a:hover{
+    
+}
+
+hr{
+    margin:50px 0;   
+}
+
+h2{
+    font-size: 18px;
+    font-family: HelveticaNeueLTPro-Bd; 
+    
+}
+
+
+
+
+/* ###############################   HEADER   ###############################*/ 
+
+header{
+    background-color: #ffffff;
+    position:fixed;
+    top: 0;
+    width: 100%; 
+    z-index: 18;
+}
+
+#branding{
+    border-bottom: 1px solid #dbdbdb;   
+    padding:25px 0;
+}
+
+
+#logo{
+    font-family: HelveticaNeueLTPro-Bd; 
+    padding-left:20px;
+    
+    
+}
+
+#cart-close-trigger{
+    display: none;
+    position: absolute;
+    background-color:#3d3d3d;  
+    right:0;
+    top:20px;
+    height: 50px;
+    width:96px;
+    text-align: center;
+    color:#ffffff; 
+    z-index: 2;
+    cursor: pointer;
+}
+
+#cart-close-trigger img{
+    width:30px;   
+    height:auto;
+    margin:0 auto;
+}
+
+#cart-trigger{
+    position: absolute;
+    background-color: #3d3d3d;  
+    right:0;
+    top:0;
+    padding:25px;
+    text-align: center;
+    color:#ffffff; 
+    cursor: pointer;
+}
+
+nav{
+   text-align: center; 
+   padding:40px 0 30px 0;
+}
+
+nav ul{
+    padding:0;   
+}
+
+nav ul li{
+    display:inline-block;
+    margin:0;
+    padding:0 4px;
+    
+}
+
+#categories-menu-trigger{
+    display: none;   
+}
+
+.active{
+    font-family: HelveticaNeueLTPro-Bd; 
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 1010px){
+ 
+    nav{
+        text-align: center; 
+        padding:30px 0 20px 0;
+    }
+    
+    nav ul{
+        margin: 0;   
+    }
+    
+    nav ul li{
+        padding:0 2px;
+        font-size: 11px;
+    
+    }
+    
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 768px){
+ 
+    /* Header */
+    
+    nav{
+    
+       padding:0; 
+    }
+    nav ul{
+        display: none;
+        padding:0;
+        height:230px;
+        overflow: scroll;
+        border: 4px solid #3d3d3d;
+    }
+    
+    nav ul li{
+        padding:15px 0;
+        border-bottom: 1px solid grey;
+        display: block; 
+        width:100%;
+    }
+    
+    .divider{
+        display: none;
+    }
+    
+    #categories-menu-trigger{
+        position: relative;
+        display: block;
+         border-bottom: 1px solid #dbdbdb;
+        padding:20px 0 5px 0;
+        margin:-1px 0 0 0;
+        font-family: HelveticaNeueLTPro-Bd; 
+    }
+    
+    .hamburger{
+        position: absolute;
+        right:10px;
+        top:0px;
+        background-color: black;
+        width:40px;
+        height:40px;
+        top: 50%;
+        transform: translateY(-50%);
+        
+    }
+    
+}
+
+/* ###############################   CART   ###############################*/
+
+#cart-wrapper{
+    display: none;
+    position: fixed;
+    right:0px;
+    top:70px;
+    background-color:#e6e6e6;
+    width:400px;
+    height:100%;
+    z-index: 20;
+    overflow: scroll;
+}
+
+#cart{
+    
+    padding-bottom: 250px;
+    
+}
+
+.cart-product-result{
+    background-color: green;
+    width:80%;   
+    height:250px;
+    margin:10px auto;
+}
+
+
+#total-wrapper{
+    position:fixed;
+    background-color: #ffffff;
+    bottom:70px;
+    width:400px;
+    height: 93px;
+    padding:33px 0;
+}
+
+#total-label{
+    position: absolute;
+    left:45px;
+    top:30px;
+}
+
+#total-amt{
+    font-family: HelveticaNeueLTPro-Bd; 
+    position: absolute;
+    top:25px;   
+    right:45px;
+    font-size: 20px;
+}
+
+
+
+#checkout-button{
+    position: fixed;
+    background-color:#000000;
+    width:400px;
+    bottom:0;
+    padding:33px 0;
+    color:#ffffff;
+    text-align: center;
+    z-index: 21;
+    overflow: scroll;
+    
+    
+}
+
+#checkout-button a:link, #checkout-button a:visited{
+       color:#ffffff;
+}
+
+
+#fadeout{
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    background-color:#000000;
+    width:100%;
+    height: 100%;
+    z-index: 19;
+    opacity: .7;
+    
+}
+
+
+/* ###############################   MAIN   ###############################*/
+
+main{
+
+    min-height:1000px;
+    
+
+}
+
+
+/* ###############################   FOOTER   ###############################*/
+
+footer{
+ 
+    background-color:#000000;
+    text-align: center;
+    color:#ffffff;
+    padding-top:25px;
+    
+}
+
+#social-icons div{
+    display: inline-block;
+}
+
+footer nav ul li a:link, footer nav ul li a:visited{
+    color:#ffffff;   
+}
+
+/* ###############################  Catalogue Result   ###############################*/
+
+.product-wrapper{
+    position: relative;
+    margin-top:10px;
+    padding-top:77px;
+    background-color: #f6f6f6;
+    max-height: 650px;
+    text-align: center;
+
+    
+}
+
+.available-colors{
+    position: absolute;
+    top:0;
+    left:0;
+    padding:25px 0 0 25px
+    
+}
+
+.color{
+    background-color:#ffffff;
+    display: inline-block;
+    border: 1px solid #999999;
+    border-radius: 29px;
+    width:22px;
+    height:22px;
+    
+}
+
+.new-flag{
+    background-color:#3f3f3f;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding:22px 28px;   
+    
+    color: #ffffff;
+}
+
+.product-wrapper p{
+    padding:60px 0 30px 0;   
+}
+
+.image-1{
+    position: relative;
+    z-index:2; 
+ 
+    transition:opacity 1s, transform 1s;
+}
+
+.image-1:hover{
+    opacity: 0;
+    transform: scale(.9);
+    transition:opacity 1s, transform 1s;
+    
+}
+
+.image-2{
+    position: absolute;
+    z-index: 1;
+    top: 77px;
+    left: 0;
+    transform: scale(.9);
+    transition:transform 1s;
+}
+
+.image-1:hover + .image-2{
+ 
+    transform: scale(1);
+    transition:transform 1s; 
+    
+}
+
+
+
+
+
+
