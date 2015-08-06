@@ -1,27 +1,10 @@
-<!doctype html>
-<html>
+<?
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Club of Odd Volumes - Catalogue</title>
-    
-    <!-- Default Styles -->
-    <? include 'php/modules/_styles.php'; ?>
-    
-    <!-- Page Specific Styles -->
-    <link href="css/catalogue.css" rel="stylesheet">
-    
+    $styleSheets = ["catalogue"];
+    $pageTitle = "Catalogue";
+    include ('php/modules/_header.php');
+?>
 
-
-</head>
-
-<body>
-    
-    
-    <?php include 'php/modules/_header.php'; ?> 
-    
-    
     <main class="container">
         
         <!-- Filters -->
@@ -47,13 +30,27 @@
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <li><a href="#">CLUB RANGE</a></li>
-                    <li><a href="#">CLUB MERCH</a></li>
+                    <? 
+                        $query = "SELECT id, artistName FROM artist WHERE visible = 1 AND pinned = 1";    
+                        $result  = queryDB($query);
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo '<li><a href="catalogue.php?artist='.$row['id'].'">'.strtoupper($row['artistName']).'</a></li>';
+                        }
+                        
+                        mysqli_free_result($result);
+                        
+                    ?>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#">ALEXIS WINTER</a></li> 
-                    <li><a href="#">FURRY LITTLE PEACH</a></li>
-                    <li><a href="#">JASMINE DOWLING</a></li>
-                    <li><a href="#">MEAT SAUCE</a></li>
+                     <? 
+                        $query = "SELECT id, artistName FROM artist WHERE visible = 1 AND pinned IS NULL";    
+                        $result  = queryDB($query);
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo '<li><a href="catalogue.php?artist='.$row['id'].'">'.strtoupper($row['artistName']).'</a></li>';
+                        }
+                        
+                        mysqli_free_result($result);
+                        
+                    ?>  
                   </ul>
                 </div>   
             </div><!-- end of filter -->    
@@ -76,74 +73,39 @@
         
         <!-- Results -->
         <section class="row">
-        
-              <div class="col-xs-10 col-xs-push-1 col-sm-4 col-sm-push-0">
-                <div class="product-wrapper">
-                    
-                    <div class="available-colors">
-                        <div class="color"></div>
-                        <div class="color"></div>
-                        <div class="color"></div>
-                    </div>
-                    
-                    <div class="new-flag">NEW</div>
-                    
-                    <a href="#">
-                    <div class="product-image">    
-                    <img src="assets/image-placeholders/product.png" class="image-1 img-responsive">
-                    <img src="assets/image-placeholders/product-2.png" class="image-2 img-responsive">
-                    </div>
-                    </a>
-                    
-                    <p><a href="">EASY COME / EASY GO TEA TOWEL $25</a></p>
-                </div>
-            </div>      
-                  
-                  
-            <div class="col-xs-10 col-xs-push-1 col-sm-4 col-sm-push-0">
-                <div class="product-wrapper">
-                    
-                    <div class="available-colors">
-                        <div class="color"></div>
-                        <div class="color"></div>
-                        <div class="color"></div>
-                    </div>
-                    
-                    <div class="new-flag">NEW</div>
-                    
-                    <a href="#">
-                    <div class="product-image">    
-                    <img src="assets/image-placeholders/product.png" class="image-1 img-responsive">
-                    <img src="assets/image-placeholders/product-2.png" class="image-2 img-responsive">
-                    </div>
-                    </a>
-                    
-                    <p><a href="">EASY COME / EASY GO TEA TOWEL $25</a></p>
-                </div>
-            </div>      
+         
+        <?  
+             
+
+            $query = "SELECT * FROM product as p
+                        INNER JOIN productTemplate as pt
+                        ON p.productTemplate_id = pt.id
+                        WHERE 
+                        p.visible IS NOT NULL 
+                        AND pt.visable IS NOT NULL
+                        ORDER BY p.newFlag DESC, p.displayPriority
+                        LIMIT 30 OFFSET 0";
+
+            $productResult  = queryDB($query);
+
+             while($row = mysqli_fetch_assoc($productResult)){
+                $productsToDisplay[$row['id']]['id'] = $row['id'];     
+                $productsToDisplay[$row['id']]['productName'] = $row['productName'];
+                $productsToDisplay[$row['id']]['price'] = $row['surcharge']+$row['basePrice'];
+                $productsToDisplay[$row['id']]['newFlag'] = $row['newFlag'];
+                $productsToDisplay[$row['id']]['artist_id'] = $row['artist_id'];
+
+            }
+      
+      
+            foreach ($productsToDisplay as $value){
+                
+                echo displayProduct($value);
+            }
             
-               <div class="col-xs-10 col-xs-push-1 col-sm-4 col-sm-push-0">
-                <div class="product-wrapper">
-                    
-                    <div class="available-colors">
-                        <div class="color"></div>
-                        <div class="color"></div>
-                        <div class="color"></div>
-                    </div>
-                    
-                    <div class="new-flag">NEW</div>
-                    
-                    <a href="#">
-                    <div class="product-image">    
-                    <img src="assets/image-placeholders/product.png" class="image-1 img-responsive">
-                    <img src="assets/image-placeholders/product-2.png" class="image-2 img-responsive">
-                    </div>
-                    </a>
-                    
-                    <p><a href="">EASY COME / EASY GO TEA TOWEL $25</a></p>
-                </div>
-            </div>      
-              
+            mysqli_free_result($productResult);
+        
+        ?>      
         
         </section>
         
@@ -151,14 +113,4 @@
     
     </main>
   
-    <?php include 'php/modules/_footer.php'; ?>
-   
-    
-    
-    
-    
-<!-- Default Javascript Actions -->
-  <? include 'php/modules/_actions.php'; ?>
-    
-</body>
-</html>
+<? include('php/modules/_footer.php'); ?>

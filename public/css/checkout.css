@@ -1,0 +1,24 @@
+/* Overrides */
+hr{
+ margin:20px 0;   
+}
+
+#form-wrapper{
+    padding:10px 0;
+}
+
+#order-info-wrapper{
+    background-color: #fafafa;
+     border-radius: 12px;
+    border: 1px solid #e1e1e1;
+    padding:20px;
+    margin: 20px 0;
+
+}
+
+
+
+.value{
+    text-align: right;
+    font-family: HelveticaNeueLTPro-Bd;    
+}

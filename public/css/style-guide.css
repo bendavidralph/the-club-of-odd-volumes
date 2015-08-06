@@ -27,6 +27,11 @@ a:hover{
     
 }
 
+
+a img:hover{
+    opacity: 0.7;   
+}
+
 hr{
     margin:50px 0;   
 }
@@ -37,6 +42,9 @@ h2{
     
 }
 
+strong{
+   font-family: HelveticaNeueLTPro-Bd;  
+}
 
 
 
@@ -169,7 +177,7 @@ nav ul li{
     #categories-menu-trigger{
         position: relative;
         display: block;
-         border-bottom: 1px solid #dbdbdb;
+        border-bottom: 1px solid #dbdbdb;
         padding:20px 0 5px 0;
         margin:-1px 0 0 0;
         font-family: HelveticaNeueLTPro-Bd; 
@@ -179,11 +187,15 @@ nav ul li{
         position: absolute;
         right:10px;
         top:0px;
-        background-color: black;
+        background-image:url(../assets/images/icons/hamburger.png);
+        background-repeat: no-repeat;
+        background-size: 30px 30px;
+        background-position: 5px 5px;
         width:40px;
         height:40px;
         top: 50%;
         transform: translateY(-50%);
+        cursor: pointer;
         
     }
     
