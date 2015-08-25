@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree TransactionGateway processor
  * Creates and manages transactions

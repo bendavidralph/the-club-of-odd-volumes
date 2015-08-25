@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree Credit Card Verification Result
  *

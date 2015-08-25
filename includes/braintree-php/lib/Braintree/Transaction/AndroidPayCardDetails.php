@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Android Pay card details from a transaction
  *

@@ -1,4 +1,4 @@
-<?php
+<?php  
 require_once realpath(dirname(__FILE__)) . '/../TestHelper.php';
 require_once realpath(dirname(__FILE__)) . '/SubscriptionTestHelper.php';
 require_once realpath(dirname(__FILE__)) . '/HttpClientApi.php';

@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree Class Instance template
  * @package    Braintree

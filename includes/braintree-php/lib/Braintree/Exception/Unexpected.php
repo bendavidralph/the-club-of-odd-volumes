@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Raised when an error occurs that the client library is not built to handle.
  * This shouldn't happen.

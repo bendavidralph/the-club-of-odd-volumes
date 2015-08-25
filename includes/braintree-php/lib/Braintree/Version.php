@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree Library Version
  * stores version information about the Braintree library

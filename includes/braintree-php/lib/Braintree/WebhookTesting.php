@@ -1,4 +1,4 @@
-<?php
+<?php  
 class Braintree_WebhookTesting
 {
     public static function sampleNotification($kind, $id)

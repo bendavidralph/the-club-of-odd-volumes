@@ -1,4 +1,4 @@
-<?php
+<?php  
 require_once realpath(dirname(__FILE__)) . '/../../TestHelper.php';
 
 class Braintree_Error_ValidationErrorCollectionTest extends PHPUnit_Framework_TestCase

@@ -1,4 +1,4 @@
-<?php
+<?php  
 class Braintree_Modification extends Braintree_Base
 {
     protected function _initialize($attributes)

@@ -1,4 +1,4 @@
-<?php
+<?php  
 
 /**
  * Base functionality for library classes

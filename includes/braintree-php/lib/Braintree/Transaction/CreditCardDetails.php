@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * CreditCard details from a transaction
  * creates an instance of CreditCardDetails

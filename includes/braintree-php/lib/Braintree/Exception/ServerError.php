@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Raised when an unexpected server error occurs.
  *

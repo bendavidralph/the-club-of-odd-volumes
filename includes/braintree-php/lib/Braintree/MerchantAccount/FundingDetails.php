@@ -1,4 +1,4 @@
-<?php
+<?php  
 
 final class Braintree_MerchantAccount_FundingDetails extends Braintree_Instance
 {

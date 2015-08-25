@@ -1,0 +1,61 @@
+/*TSHIRT*/
+
+.product_1_frontdo1{
+ 
+    width:13%;
+    height:11.4%;
+    top: 30%;
+    left: 56%;
+    
+}
+
+.product_1_frontdo2{
+    width:39.5%;
+    height:34.7%;
+    top: 30%;
+    left: 29.5%;
+
+    
+}
+
+.product_1_backdo1{
+ 
+    width:13%;
+    height:11.4%;
+    top: 30%;
+    left: 56%;
+    
+}
+
+.product_1_backdo2{
+    width:39.5%;
+    height:34.7%;
+    top: 30%;
+    left: 29.5%;
+
+    
+}
+
+
+/* PILLOWCASE */
+
+.product_12_frontdo2{
+ 
+    width:49%;
+    height:48%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-54%,-50%);
+    
+}
+
+
+.product_12_backdo2{
+ 
+    width:49%;
+    height:48%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-54%,-50%);
+    
+}

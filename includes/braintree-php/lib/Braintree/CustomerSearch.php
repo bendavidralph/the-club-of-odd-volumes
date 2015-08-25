@@ -1,4 +1,4 @@
-<?php
+<?php  
 class Braintree_CustomerSearch
 {
     static function addressCountryName()               { return new Braintree_TextNode('address_country_name'); }

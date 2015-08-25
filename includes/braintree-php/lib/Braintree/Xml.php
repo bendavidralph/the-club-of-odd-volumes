@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree Xml parser and generator
  * PHP version 5

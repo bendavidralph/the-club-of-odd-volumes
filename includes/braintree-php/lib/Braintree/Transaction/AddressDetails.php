@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Creates an instance of AddressDetails as returned from a transaction
  *

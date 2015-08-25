@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Raised when the SSL certificate fails verification.
  *

@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree CustomerGateway module
  * Creates and manages Customers

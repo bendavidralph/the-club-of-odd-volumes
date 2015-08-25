@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * error object returned as part of a validation error collection
  * provides read-only access to $attribute, $code, and $message

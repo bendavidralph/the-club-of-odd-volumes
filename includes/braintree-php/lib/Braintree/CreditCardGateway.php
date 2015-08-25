@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree CreditCardGateway module
  * Creates and manages Braintree CreditCards

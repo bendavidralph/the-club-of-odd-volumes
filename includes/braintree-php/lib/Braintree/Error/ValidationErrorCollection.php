@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * collection of errors enumerating all validation errors for a given request
  *

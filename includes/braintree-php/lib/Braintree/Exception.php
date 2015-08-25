@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * super class for all Braintree exceptions
  *

@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * PayPal details from a transaction
  *

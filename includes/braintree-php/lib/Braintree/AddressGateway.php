@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree AddressGateway module
  * PHP Version 5

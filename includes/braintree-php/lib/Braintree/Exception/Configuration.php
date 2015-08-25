@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Raised when the Braintree library is not completely configured.
  *

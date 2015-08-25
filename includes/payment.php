@@ -1,4 +1,4 @@
-<?
+<?php 
 
     require_once 'braintree-php/lib/Braintree.php';
 
@@ -14,17 +14,65 @@
         
     }
 
-    function executePayment($nonce){
+    function executePayment($nonce,$amount){
     
         
         $result = Braintree_Transaction::sale([
-          'amount' => '100.00',
+          'amount' => $amount,
           'paymentMethodNonce' => $nonce
         ]);
+        
+        
+        
+
         
         return $result;
         
     }
+
+
+    function saveTransaction($id){
+
+        // Update Order Status to = confirmed 
+        $updateValues['orderStatus'] = 'confirmed';
+        update_DB('customerOrder',$updateValues,$id);
+        
+        
+    }
+
+    function sendRedeiptEmail($id){
+     
+        // Send Receipt Emails to Sarah and Customer 
+        
+    }
+
+
+
  
+
+    function handleFailure($result){
+        
+    // reprot the issue to the user   
+    // There has been an error please contact shop@theclubofoddvolumes.com
+        
+    echo $result->_attributes["transaction"]->_attributes["status"];
+    
+    // Response Code 
+    echo $result->_attributes["transaction"]->_attributes["processorResponseCode"];
+    
+    // Message 
+    echo $result->_attributes["transaction"]->_attributes["processorResponseText"];
+        
+     
+        // Log Errors 
+        
+        // Email ADMIN
+        
+        
+    }
+    
+   
+
+
 
 ?>

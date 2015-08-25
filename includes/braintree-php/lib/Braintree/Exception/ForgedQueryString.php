@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Raised when a suspected forged query string is present
  * Raised from methods that confirm transparent redirect requests

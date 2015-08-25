@@ -1,4 +1,4 @@
-<?php
+<?php  
 class Braintree_DiscountGateway
 {
     private $_gateway;

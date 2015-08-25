@@ -1,4 +1,4 @@
-<?php
+<?php  
 class Braintree_Discount extends Braintree_Modification
 {
     public static function factory($attributes)

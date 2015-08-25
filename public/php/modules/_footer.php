@@ -14,21 +14,21 @@
         
             <nav>
                 <ul>
-                    <li><a href="#">CONTACT</a></li>
+                    <li><a href="contact.php">CONTACT</a></li>
                     <li>/</li>
-                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="sizing.php">SIZING</a></li>
                     <li>/</li>
-                    <li><a href="#">SIZING</a></li>
+                    <li><a href="sizing.php#refunds">RETURNS</a></li>
                     <li>/</li>
-                    <li><a href="#">REFUNDS</a></li>
+                    <li><a href="faq.php">FAQ</a></li>
                     <li>/</li>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a href="join-the-odd-collective.php">JOIN THE ODD COLLECTIVE</a></li>
                     <li>/</li>
-                    <li><a href="#">JOIN THE ODD COLLECTIVE</a></li>
+                    <li><a href="artist-directory.php">ARTIST DIRECTORY</a></li>
                     <li>///</li>
-                    <li><a href="#">CUSTOM PRINTING  BULK PRICING</a></li>
+                    <li><a href="custom-printing-bulk-pricing.php">CUSTOM PRINTING  BULK PRICING</a></li>
                     <li>/</li>
-                    <li><a href="#">FILE SET UP TIPS</a></li>
+                    <li><a href="file-set-up-tips.php">FILE SET UP TIPS</a></li>
                 </ul>
             </nav>
     
@@ -40,6 +40,18 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>  
 <script src="js/project-functions.js"></script>  
 
+
+ <!-- Page Specific Scripts -->
+    <?php 
+
+        if(isset($scripts)){
+        foreach ($scripts as $value){
+
+            echo "<script src='js/{$value}.js'></script>";
+
+        }}
+    ?>
+    
     
 </body>
 </html>

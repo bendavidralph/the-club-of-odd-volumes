@@ -1,4 +1,4 @@
-<?php
+<?php  
 
 class SanityTest extends PHPUnit_Framework_TestCase
 {

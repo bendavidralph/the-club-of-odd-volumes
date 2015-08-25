@@ -1,4 +1,4 @@
-<?php
+<?php  
 
 class Braintree_EqualityNode extends Braintree_IsNode
 {

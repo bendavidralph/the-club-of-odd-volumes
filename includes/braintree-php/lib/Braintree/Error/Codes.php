@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  *
  * Validation Error codes and messages

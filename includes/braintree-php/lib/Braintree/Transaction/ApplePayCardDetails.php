@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Apple Pay card details from a transaction
  *

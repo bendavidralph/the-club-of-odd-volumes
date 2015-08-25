@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Raised from non-validating methods when gateway validations fail.
  *

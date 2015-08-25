@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree ApplePayCard module
  * Creates and manages Braintree Apple Pay cards

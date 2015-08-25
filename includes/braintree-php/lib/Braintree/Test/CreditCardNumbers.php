@@ -1,4 +1,4 @@
-<?php
+<?php  
 
 /**
  * Credit card information used for testing purposes

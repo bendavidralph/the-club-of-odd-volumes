@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Nonces used for testing purposes
  *

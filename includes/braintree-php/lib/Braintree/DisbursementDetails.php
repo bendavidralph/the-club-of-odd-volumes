@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Disbursement details from a transaction
  * Creates an instance of DisbursementDetails as returned from a transaction

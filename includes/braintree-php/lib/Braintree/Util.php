@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree Utility methods
  * PHP version 5

@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree OAuthGateway module
  * PHP Version 5

@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree PaymentMethodNonce module
  *

@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Coinbase details from a transaction
  *

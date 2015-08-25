@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree Transparent Redirect Gateway module
  * Static class providing methods to build Transparent Redirect urls

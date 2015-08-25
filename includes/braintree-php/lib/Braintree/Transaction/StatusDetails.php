@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Status details from a transaction
  * Creates an instance of StatusDetails, as part of a transaction response

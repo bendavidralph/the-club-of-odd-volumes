@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Raised when a client library must be upgraded.
  *

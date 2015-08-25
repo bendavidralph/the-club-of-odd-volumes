@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Partner Merchant information that is generated when a partner is connected
  * to or disconnected from a user.

@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree ResourceCollection
  * ResourceCollection is a container object for result data

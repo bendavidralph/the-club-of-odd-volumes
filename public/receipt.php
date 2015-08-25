@@ -1,28 +1,33 @@
-<?
-    include '../includes/payment.php';
+
+
+<?php 
     $styleSheets = ["receipt"];
     $pageTitle = "Receipt";
     include ('php/modules/_header.php');
-?>
 
-<main class="container">
 
-<?
 
- 
-        if($_POST["payment_method_nonce"]){
-        
-            $nonce = $_POST["payment_method_nonce"];
-            $result = executePayment($nonce);
-            
-        }
-
-        echo "You're the best, thanks for shopping!";
-
-        
 
 ?>
 
+
+<main>
+    
+        
+<h2>PURCHASE COMPLETE</h2>
+ <br>
+<p>Your order has been recieved.<br>
+We really appreciate your business and support, thanks <3 </p>
+<br>
+<p>Check your inbox for a conformation and feel free to email us if you have any questions. <br>
+We will let you know once it is printed and on its way to you.</p>
+        
 </main>
+
+
+
   
-<? include('php/modules/_footer.php'); ?>
+<?php   include('php/modules/_footer.php'); ?>
+
+
+

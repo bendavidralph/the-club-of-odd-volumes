@@ -1,4 +1,4 @@
-<?
+<?php 
     $styleSheets = ["index"];
     $pageTitle = "Home";
     include ('php/modules/_header.php');
@@ -11,4 +11,4 @@
         
 </main>
   
-<? include('php/modules/_footer.php'); ?>
+<?php   include('php/modules/_footer.php'); ?>

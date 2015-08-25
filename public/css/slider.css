@@ -1,0 +1,34 @@
+#hero-slider{
+    background-color: #000000;
+    position: relative;
+    height:700px;
+    overflow: hidden;
+
+}
+
+.slide{
+    position: absolute;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left:0px;
+    opacity: 0;
+
+    
+    
+}
+
+
+.scale100{
+   
+    opacity: 1;
+
+}
+
+.scale200{
+  
+}

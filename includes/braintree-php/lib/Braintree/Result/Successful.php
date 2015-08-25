@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree Successful Result
  *

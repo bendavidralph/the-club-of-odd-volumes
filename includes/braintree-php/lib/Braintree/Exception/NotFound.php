@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Raised when a record could not be found.
  *

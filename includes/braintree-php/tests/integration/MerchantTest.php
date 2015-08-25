@@ -1,4 +1,4 @@
-<?php
+<?php  
 require_once __DIR__ . '/../TestHelper.php';
 
 class Braintree_MerchantTest extends PHPUnit_Framework_TestCase

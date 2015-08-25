@@ -1,0 +1,43 @@
+
+.upload-image-wrapper{
+    position: relative;
+    text-align: center;
+}
+
+
+.portrait{
+    height:100%;
+    width:auto;
+    display: inline-block;
+    margin:0 auto;
+}
+
+.landscape{
+    width:100%;
+    height:auto;
+}
+
+#front-image-mask{
+    background-color: green;
+    position:absolute;
+    overflow: hidden;
+/*
+    Pillowcase
+
+*/
+    
+
+  
+}
+
+#back-image-mask{
+    background-color: green;
+    position:absolute;
+    overflow: hidden;
+}
+
+
+.viewimage{
+    height:100%;
+
+}

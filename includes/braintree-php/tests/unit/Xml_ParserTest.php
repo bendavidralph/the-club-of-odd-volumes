@@ -1,4 +1,4 @@
-<?php
+<?php  
 
 require_once realpath(dirname(__FILE__)) . '/../TestHelper.php';
 
@@ -506,7 +506,7 @@ END;
             ));
         $xml = Braintree_Xml::buildXmlFromArray($array);
         $xml2 =<<<XML
-<?xml version="1.0" encoding="UTF-8"?>
+<?php xml version="1.0" encoding="UTF-8"?>
 <root>
  <an-empty-string></an-empty-string>
  <a-null-value nil="true"></a-null-value>

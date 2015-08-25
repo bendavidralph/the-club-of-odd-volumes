@@ -1,4 +1,4 @@
-<?php
+<?php  
 class Braintree_CreditCardVerification extends Braintree_Result_CreditCardVerification
 {
     public static function factory($attributes)

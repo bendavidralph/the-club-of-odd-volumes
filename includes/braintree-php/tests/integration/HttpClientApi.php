@@ -1,4 +1,4 @@
-<?php
+<?php  
 
 class Braintree_HttpClientApi extends Braintree_Http
 {

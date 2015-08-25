@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Digest encryption module
  * Digest creates an HMAC-SHA1 hash for encrypting messages

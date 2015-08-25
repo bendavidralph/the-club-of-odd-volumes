@@ -1,4 +1,4 @@
-<?php
+<?php  
 class Braintree_SettlementBatchSummary extends Braintree_Base
 {
     /**

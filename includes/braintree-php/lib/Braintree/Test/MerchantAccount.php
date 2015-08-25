@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Merchant Account constants used for testing purposes
  *

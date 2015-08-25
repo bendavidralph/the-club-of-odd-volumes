@@ -1,4 +1,4 @@
-<?php
+<?php  
 class Braintree_TransactionSearch
 {
     static function amount()                     { return new Braintree_RangeNode("amount"); }

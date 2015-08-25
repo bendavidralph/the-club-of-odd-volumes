@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Customer details from a transaction
  * Creates an instance of customer details as returned from a transaction

@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Raised when authorization fails
  * Raised when the API key being used is not authorized to perform

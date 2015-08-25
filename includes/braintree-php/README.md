@@ -17,7 +17,7 @@ The following PHP extensions are required:
 ## Quick Start Example
 
 ```php
-<?php
+<?php  
 
 require_once 'PATH_TO_BRAINTREE/lib/Braintree.php';
 

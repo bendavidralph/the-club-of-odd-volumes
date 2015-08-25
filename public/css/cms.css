@@ -1,0 +1,141 @@
+.center{
+    text-align: center !important;   
+}
+
+.left{
+    text-align: left !important;    
+}
+
+.right{
+   text-align: right !important;     
+}
+
+
+
+
+/* ################# POPUP ####################*/
+
+#popup-wrapper{
+        
+    position: fixed;
+    z-index: 40;
+    width:80%;
+    
+}
+
+
+/* ################# END ####################*/
+
+h1{
+    margin:50px 0;
+    text-align: center;
+    font-family: HelveticaNeueLTPro-Bd; 
+    font-size: 30px;
+    
+}
+
+h2{
+  
+    text-align: center;
+
+    
+}
+
+
+.artist-wrapper{
+ margin-bottom:25px;   
+}
+
+.artist-wrapper img:hover{
+       opacity: 0.8;
+        cursor: pointer;
+    
+}
+
+.artist-details{
+    position: relative;
+    background-color: #f6f6f6;  
+    margin:0;
+    padding: 0 0 0 22px;
+}
+
+.artist-details h4{
+    font-family: HelveticaNeueLTPro-Bd; 
+    font-size:14px;
+    margin:0;
+    padding:22px 0 5px 0;
+    width:60%;
+    
+}
+
+
+
+
+.artist-details h5{
+    font-size:9px;
+    margin:0;
+    padding:0 0 22px 0;
+}
+
+.social-wrapper{
+    position: absolute;
+    right:10px;
+    top: 50%;
+    overflow: hidden;
+  transform: translateY(-50%);
+    
+}
+
+.social{
+    margin: 0 2px;
+    display: inline-block;   
+}
+
+.previous{
+
+    width: 100%;
+    text-align: center;   
+    margin: 0;
+    padding:20px 0;
+    font-family: HelveticaNeueLTPro-Bd; 
+}
+
+/* ########## RETURNS ############/*/
+
+#size-thumbnail-wrapper img:hover{
+ 
+    opacity: 0.8;
+    cursor: pointer;
+    
+}
+
+#returns{
+    text-align: center;
+    max-width:700px;
+    margin: 0 auto;
+    padding:0 20px;
+}
+
+/* ########## Contact ############/*/
+
+#contact h2{
+    margin:0 0 40px 0;   
+}
+
+.anchor{
+    margin-left:-1px;
+    parring-right:1px;
+}
+
+.business-sections{
+    margin:50px 0 80px 0;   
+}
+
+.business-sections div{
+    border:1px solid #3d3d3d;
+    padding:20px 0;
+}
+
+#contact-us-img-4{
+    margin-top:50px;   
+}

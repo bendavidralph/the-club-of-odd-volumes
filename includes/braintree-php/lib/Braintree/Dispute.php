@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Creates an instance of Dispute as returned from a transaction
  *

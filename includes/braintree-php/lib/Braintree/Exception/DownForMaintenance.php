@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Raised when the gateway is down for maintenance.
  *

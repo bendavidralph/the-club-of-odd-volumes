@@ -1,4 +1,4 @@
-<?php
+<?php  
 
 class Braintree_PartialMatchNode extends Braintree_EqualityNode
 {

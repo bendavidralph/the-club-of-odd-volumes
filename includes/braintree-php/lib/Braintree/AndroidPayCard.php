@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Braintree AndroidPayCard module
  * Creates and manages Braintree Android Pay cards

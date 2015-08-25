@@ -1,4 +1,4 @@
-<?php
+<?php  
 
 final class Braintree_MerchantAccountGateway
 {

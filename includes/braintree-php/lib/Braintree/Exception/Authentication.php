@@ -1,4 +1,4 @@
-<?php
+<?php  
 /**
  * Raised when authentication fails.
  * This may be caused by an incorrect Braintree_Configuration
