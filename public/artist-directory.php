@@ -5,7 +5,7 @@
 ?>
 
 
-<main class="container">
+<main id="artist" class="container">
         
 
     <h1>CURRENT ARTISTS</h1>
@@ -26,35 +26,43 @@
         <div id="<?php echo $row["id"]; ?>" class="col-md-3 col-sm-4 artist-wrapper"> 
             <a href="catalogue?artist=<?php echo $row["id"]; ?>"><img src="assets/images/artist/<?php echo $row["id"]; ?>.jpg" class="img-responsive"></a>
             
+            <div class="artist-details-wrapper">
+            
             <div class="artist-details">
                 <h4><a href="catalogue?artist=<?php echo $row["id"]; ?>"><?php echo $row['artistName']; ?></a></h4>
                 <h5><?php echo $row['location']; ?></h5>
+            </div>
             
-            
-                <div class="social-wrapper">
+            <div class="social-wrapper">
 
-    <?php
-            $socialCount = 0;
-                
-            if($row['email']){ 
-                $socialCount++;
-                echo "<div class='social mail-icon'><a href='mailto:{$row['email']}' target='_black'><img src='assets/images/icons/email.png'></a></div>";
-            }
-            
-            if($row['instagramUsername']){
-                $socialCount++;  
-                echo "<div class='social instagram-icon'><a href='https://instagram.com/{$row['instagramUsername']}' target='_black'><img src='assets/images/icons/instagram.png'></a></div>";
-            }
-            
-            if(($row['facebookUsername']) && ($socialCount < 2)){ 
-                echo "<div class='social facebook-icon'><a href='https://facebook.com/{$row['facebookUsername']}' target='_black'><img src='assets/images/icons/facebook.png'></a></div>";
-            }
-    ?>
-                </div>
+
+                <?php
+                $socialCount = 0;
+
+                if($row['email']){ 
+                    $socialCount++;
+                    echo "<div class='social mail-icon'><a href='mailto:{$row['email']}' target='_black'><img src='assets/images/icons/email.png'></a></div>";
+                }
+
+                if($row['instagramUsername']){
+                    $socialCount++;  
+                    echo "<div class='social instagram-icon'><a href='https://instagram.com/{$row['instagramUsername']}' target='_black'><img src='assets/images/icons/instagram.png'></a></div>";
+                }
+
+                if(($row['facebookUsername']) && ($socialCount < 2)){ 
+                    echo "<div class='social facebook-icon'><a href='https://facebook.com/{$row['facebookUsername']}' target='_black'><img src='assets/images/icons/facebook.png'></a></div>";
+                }
+               ?>
+
+            </div>
 
             </div>
             
+         
+            
         </div>
+        
+
         
 <?php
        }
@@ -64,7 +72,7 @@
 ?>         
         
         
-        
+              <div class="col-sm-3"><a href="join-the-odd-collective.php"><img src="assets/images/join-the-odd-collective/join-artist-adv2.jpg" class="img-responsive"></a></div>     
 
     
     </section>
@@ -74,7 +82,7 @@
     <h2>PREVIOUS ARTISTS</h2>
     
     
-    <section class="row">
+    <section id="previous-artist-wrapper" class="row">
         
   <?php
         $count = 4;

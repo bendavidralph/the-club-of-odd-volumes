@@ -2,7 +2,7 @@
 
 main{
     position: relative;
-    background-color:#f6f6f6;   
+  
 }
 
 h3{
@@ -18,8 +18,8 @@ margin:18px 0;
     background-color: #f6f6f6; 
     height:688px;
     width:70%;
-    overflow: auto;
-    overflow-y: hidden;   
+    overflow: scroll;
+    overflow-y: hidden;
     margin:0;
     padding:0;
 }
@@ -27,8 +27,21 @@ margin:18px 0;
 #product-shots{
     position: relative;
     height:100%;
-    width:2500px;
+/*    width:2500px;*/
     display: inline-block;
+    
+    position: absolute;
+    top: 50%;
+    
+       width: -webkit-max-content;
+      width: -moz-max-content;
+      width: max-content;
+    
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
 
 }
 
@@ -39,21 +52,20 @@ margin:18px 0;
     padding:0;
     list-style: none;
     
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    
+
 }
 
 #product-shots ul li{
 
-    margin:0 0 0 80px;
+    margin:0 20px 0 20px;
     height:100%;
     display: inline-block;
     
 
 }
 
-#product-shots ul li img{
+.product-IMG{
     height:100%;
     width:auto;
 
@@ -61,9 +73,10 @@ margin:18px 0;
 }
 
 #product-shot-controls{
-    position: fixed;
-    bottom:0;
+    position:absolute;
+    top:0;
     left:0;
+    z-index:10;
 
 }
 
@@ -89,7 +102,7 @@ margin:18px 0;
 
     background-color:#f6f6f6;
     border-left:1px solid #3d3d3d;
-    
+    padding-bottom:100px;
 }
 
 h5{
@@ -100,6 +113,7 @@ h5{
 #product-info-panel{
     width:80%;
     margin:0 auto;
+    padding:35px 0 0 0;
 }
 
 
@@ -112,6 +126,8 @@ h5{
 }
 
 #color-selector ul li{
+    font-family: HelveticaNeueLTPro-Bd; 
+    font-size: 18px;
     text-align: center;
     display: inline-block;
     width:60px;
@@ -132,13 +148,19 @@ h5{
 
 #color-selector .active{
     border:4px solid #6d7076; 
-    font-family: HelveticaNeueLTPro-Th; 
+    font-family: HelveticaNeueLTPro-Bd; 
+    
 /*    padding:10px 0;*/
 }
 
 
 
-
+#addon{
+    
+    padding:30px 0 20px 0;
+    width:100%;
+       
+}
 
 
 /* Stock Selector */
@@ -158,7 +180,7 @@ h5{
     display:none;
     width:60px;
     border:1px solid #3d3d3d;
-    margin-left:-4px;
+    margin:-1px 0 0 -1px;
 }
 
 .includeInCount{
@@ -226,18 +248,17 @@ h5{
 }
 
 /* information-triggers */
-#information-triggers{
-    margin-bottom: 40px;   
-}
+
 
 #sizing, #refunds{
     position: relative;
     display: inline-block;
     padding:20px 0 18px 0;
-    width:180px;   
+   
     border: 1px solid #3d3d3d;
     text-align: center;
-    margin-left:-5px;
+    margin-left:-1px;
+    margin-bottom: 10px;
 }
 
 #sizing:hover, #refunds:hover{
@@ -259,15 +280,21 @@ h5{
     padding:30px 0;
     text-align: center;
     color:#ffffff;
-    
+    width:33%;
+    z-index:10;
     /* Text */
     font-size: 14px;
     color:#ffffff;
     
+    
+}
+
+.add-to-cart-full-width{
+    width: 100% !important;   
 }
 
 #price, #add-to-cart-button{
-
+    font-family: HelveticaNeueLTPro-Bd; 
     display: inline-block;
 
 }
@@ -287,4 +314,53 @@ h5{
     background-color:#ffffff;
     text-align: center;
     padding:50px 0;
+    margin-bottom:0px
 }
+
+#you-may-also-like-product-wrapper{
+ 
+    background-color: #ffffff;
+    
+}
+
+
+
+	/* Custom, iPhone Retina */
+	@media only screen and (min-width : 320px){
+         #product-shot-wrapper{
+                    position:relative;
+                    width:100%;
+                }
+	}
+ 
+	/* Extra Small Devices, Phones */
+	@media only screen and (min-width : 480px){
+        #product-shot-wrapper{
+            position:relative;
+            width:100%;
+        }
+	}
+ 
+	/* Small Devices, Tablets */
+	@media only screen and (min-width : 768px){
+         #product-shot-wrapper{
+            position:relative;
+            width:100%;
+        }
+            }
+ 
+	/* Medium Devices, Desktops */
+	@media only screen and (min-width : 992px){
+        #product-shot-wrapper{
+            position:fixed;
+            width:70%;
+        }
+	}
+ 
+	/* Large Devices, Wide Screens */
+	@media only screen and (min-width : 1200px){
+ 
+        
+        
+	}
+

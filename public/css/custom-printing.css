@@ -1,23 +1,29 @@
-
-
-.slide1{
-   background: url(../assets/images/home-banner/1.png) no-repeat ; 
-
-
+#banner{
+    
+ padding:0;
+    
 }
 
-.slide2{
-    background: url(../assets/images/home-banner/2.png) no-repeat ; 
-
-}
-
-.slide3{
-    background: url(../assets/images/home-banner/3.png) no-repeat  ; 
-
-   
-}
 
 h2{
     text-align: center;
     margin:70px 0 50px 0;
 }
+
+.product-wrapper{
+    padding-top:0;   
+}
+
+.image-2{
+    top:0;   
+}
+
+#banners{
+    margin-top:40px;   
+}
+
+#banners div{
+    margin-bottom:40px;   
+    
+}
+

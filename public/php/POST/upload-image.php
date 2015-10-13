@@ -1,7 +1,7 @@
 <?php
 
 
-    $file_formats = array("jpg", "png", "gif", "bmp"); // Set File format
+    $file_formats = array("jpg", "png", "gif", "bmp", "jpeg"); // Set File format
     $filepath = "assets/custom-image-uploads";
     $saveToPath = "../../assets/custom-image-uploads/";
 
@@ -11,9 +11,11 @@
       $size = $_FILES['imagefile']['size'];
 
        if (strlen($name)) {
+           
           $extension = substr($name, strrpos($name, '.')+1);
-          if (in_array($extension, $file_formats)) { 
-              if ($size < (2048 * 1024)) {
+          $extension = strtolower($extension);
+            if (in_array($extension, $file_formats)) { 
+              if ($size < (8000 * 8000)) {
                  $imagename = md5(uniqid().time()).".".$extension;
                  $tmp = $_FILES['imagefile']['tmp_name'];
                  if (move_uploaded_file($tmp, $saveToPath . $imagename)) {
@@ -25,7 +27,7 @@
                     echo json_encode($arr);
              }
           } else {
-                  $arr = array('error' => "Your image size is bigger than 2MB.");
+                  $arr = array('error' => "Your image size is a little to big.");
                   echo json_encode($arr);
           }
            } else {
@@ -45,7 +47,7 @@
 
 ?>
 
-<?
+<?php
 
     function returnImage($filepath,$imagename){
      

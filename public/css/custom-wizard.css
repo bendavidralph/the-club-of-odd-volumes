@@ -1,3 +1,7 @@
+main{
+    margin:0 !important;   
+}
+
 
 .upload-image-wrapper{
     position: relative;
@@ -18,26 +22,106 @@
 }
 
 #front-image-mask{
-    background-color: green;
+/*    background-color: green;*/
     position:absolute;
     overflow: hidden;
-/*
-    Pillowcase
-
-*/
-    
+border:1px solid #3d3d3d;
 
   
 }
 
 #back-image-mask{
-    background-color: green;
+/*    background-color: green;*/
     position:absolute;
     overflow: hidden;
+    border:1px solid #3d3d3d;
+
 }
 
 
 .viewimage{
+    position: relative;
     height:100%;
+    width: 100%;
 
+}
+
+.alert{
+    display: none;
+    border-radius: 0;
+    
+}
+
+.note{
+    font-size:10px;   
+}
+
+#product-selector{
+    background: transparent;
+    background-color:#e6e6e6;
+    height:50px;
+    font-size:18px;
+    font-family: HelveticaNeueLTPro-Bd; 
+    line-height: 1;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+   -webkit-appearance: none;
+    
+    margin:0 0 40px 0;
+}
+
+
+.designInput{
+    border:1px solid #ffffff;
+    padding:10px;
+    margin:20px 0;
+}
+
+.designControls{
+    display: none;
+}
+    
+#file-set-up a:link, #file-set-up a:visited{
+    color:#337ab7;   
+}
+
+
+.upload-trigger {
+    border-top:1px solid #ffffff;
+    border-bottom:1px solid #ffffff;
+    width:100%;
+    overflow: hidden;
+    padding:20px 0 20px 0px;
+    text-align: center;
+}
+
+.image-placemement-wrapper{
+    border-bottom:1px solid #ffffff;
+    padding:10px;   
+}
+
+.dim-for-loading-body{
+    overflow: hidden;
+     opacity: .4; 
+}
+
+
+
+#loading{
+    display: none;
+    background: url(../assets/images/loading/loading.gif) center center;
+    background-repeat: no-repeat;
+    position:fixed;
+    width: 100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:300;
+}
+
+
+
+#here-to-help{
+    padding:10px 0 0 0;
+    margin-left:-4px;
 }

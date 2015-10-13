@@ -4,11 +4,26 @@
     // 1. Create a databsae connection 
     function createDBConnection(){
         
+////      Test Database         
         $dbshost = "localhost";
         $dbuser = "root";
         $dbpass = "root";
         $dbname = "theclubofoddvolumes";
-        $db = mysqli_connect($dbshost,$dbuser,$dbpass,$dbname);
+        $db = mysqli_connect($dbshost,$dbuser,$dbpass,$dbname);    
+        
+//      Live Database (Tunnel)        
+//      $dbshost = "127.0.0.1";
+//      $dbuser = "bendavidralph";
+//      $dbpass = "Ss3162404$19.87pop";
+//      $dbname = "theclubofoddvolumes";
+//      $db = mysqli_connect($dbshost,$dbuser,$dbpass,$dbname);
+        
+//      Live Database       
+//      $dbshost = "localhost";
+//      $dbuser = "bendavidralph";
+//      $dbpass = "Ss3162404$19.87pop";
+//      $dbname = "theclubofoddvolumes";
+//      $db = mysqli_connect($dbshost,$dbuser,$dbpass,$dbname);        
 
         if(mysqli_connect_errno()){
             die("Database connection failed: ".
@@ -106,7 +121,7 @@
                 $count++;
             }
         
-          echo  $query = "INSERT INTO {$table} ({$columns}) VALUES ({$values})";
+            $query = "INSERT INTO {$table} ({$columns}) VALUES ({$values})";
             $db = createDBConnection();
         
             $result = mysqli_query($db,$query);

@@ -7,6 +7,18 @@
 
 <head>
     
+    <!-- Begin Inspectlet Embed Code -->
+    <script type="text/javascript" id="inspectletjs">
+    window.__insp = window.__insp || [];
+    __insp.push(['wid', 1183890671]);
+    (function() {
+    function ldinsp(){var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+    document.readyState != "complete" ? (window.attachEvent ? window.attachEvent('onload', ldinsp) : window.addEventListener('load', ldinsp, false)) : ldinsp();
+
+    })();
+    </script>
+    <!-- End Inspectlet Embed Code -->
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Club of Odd Volumes - <?php  echo $pageTitle ?></title>
@@ -27,7 +39,16 @@
         }
     ?>
     
-    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-35008170-1', 'auto');
+      ga('send', 'pageview');
+
+</script>
 
 </head>  
     
@@ -41,10 +62,10 @@
             <div id="cart-trigger">CART <?php  echo cartTotal(); ?></div>
         </div>
         
-        <nav class="row">
+        <nav id="header" class="row">
             
             <div id="categories-menu-trigger">
-                <p>CATEGORIES</p>
+                <p>SHOP</p>
                 <div class="hamburger"></div>
             </div>
             
@@ -96,7 +117,7 @@
         
     </header>
     
-    <aside id="cart-wrapper"  >
+    <aside id="cart-wrapper">
         
       
     </aside>

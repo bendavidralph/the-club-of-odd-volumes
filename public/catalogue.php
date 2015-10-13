@@ -1,6 +1,6 @@
 <?php 
 
-    $styleSheets = ["catalogue"];
+    $styleSheets = ["catalogue","catalogue-mobile"];
     $pageTitle = "Catalogue";
     $scripts = ["search"];
     include ('php/modules/_header.php');
@@ -69,7 +69,7 @@
                     ?>
                     <li role="separator" class="divider"></li>
                     <?php   
-                        $query = "SELECT id, artistName FROM artist WHERE visible = 1 AND active = 1 AND pinned IS NULL";    
+                        $query = "SELECT id, artistName FROM artist WHERE visible = 1 AND active = 1 AND pinned IS NULL ORDER BY artistName";    
                         $result  = queryDB($query);
                         while($row = mysqli_fetch_assoc($result)){
                             echo '<li><a href="catalogue.php?artist='.$row['id'].generateFilterURL('artist').'">'.strtoupper($row['artistName']).'</a></li>';
@@ -114,6 +114,8 @@
             
         }
 
+        $selectedCat = $filters['category'];
+
         $query = "SELECT 
                         p.id as id,
                         p.productName as productName,
@@ -134,7 +136,6 @@
                         {$filters['sort']}
                         LIMIT ".LIMIT." OFFSET {$offset}";
 
-            
             $productResult  = queryDB($query);
 
             if(mysqli_num_rows($productResult) >= 1){
@@ -149,10 +150,18 @@
 
                 }
 
-
+                // Set counter for Ads
+                $addCount = $offset;
+                $selectedCat = str_replace("AND pt.category_id = ","",$selectedCat);
+                
                 foreach ($productsToDisplay as $value){
-
+                    
+                    $addCount ++;
+                    displayAd($addCount,$selectedCat);   
+                    
                     echo displayProduct($value);
+                   
+                    
                 }
             
             }else{
@@ -174,7 +183,7 @@
         </section>
         
         
-        <nav>
+        <nav id="pagination-wrapper">
           <ul class="pagination">
 
               
@@ -209,12 +218,19 @@
                 $countUp = 1;
                 while($count > 0){
                     
+                $lowerLimit = $activePage - 1;
+                $upperLimit = $activePage + 1;
+                    
+                    
+             
                
-                  if($countUp == $activePage){$active = "active";   
+                  if($countUp == $activePage){
+                      $active = "class='active'";   
                   }else{$active="";}
              
-                echo "<li class='{$active}'><a href='catalogue.php?page={$countUp}{$urlFilters}'>{$countUp}</a></li>";
-
+                  echo "<li {$active}><a href='catalogue.php?page={$countUp}{$urlFilters}'>{$countUp}</a></li>";
+            
+                    
                 $countUp ++;        
                 $count--;
                 }
@@ -229,3 +245,48 @@
 
 
 <?php   include('php/modules/_footer.php'); ?>
+
+<?php
+
+    function displayAd($addCount,$cat){
+        
+      
+//    if($addCount == 9 || $addCount == 34 || $addCount == 47 || $addCount == 65){    
+        
+?>        
+     
+<!--
+    <div id="custom-ad" class="col-xs-6  col-sm-4">
+        
+        <a href=custom-printing.php>
+        <img src="assets/images/search-adds/<?php echo $addCount ?>.jpg" class="img-responsive">
+        </a>
+    </div>
+-->
+
+<?php     
+//    }
+//        
+//if($addCount == 19){    
+//    
+//    if($cat == 3 || $cat == 2 || $cat == 1){
+//           
+//    $addCount = $addCount . "-" . $cat;
+      
+?>        
+     
+<!--
+      <div id="custom-ad" class="col-xs-6  col-sm-4">
+        
+        <a href=custom-printing.php>
+        <img src="assets/images/search-adds/<?php echo $addCount ?>.jpg" class="img-responsive">
+        </a>
+    </div>
+-->
+
+<?php     
+//        }
+//        }        
+    }
+
+?>

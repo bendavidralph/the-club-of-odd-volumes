@@ -1,12 +1,8 @@
 $(document).ready(function(){
     
-
-    $(window).resize(function(){
-        setHeroSliderHight();
-    });
+  
     
-    setHeroSliderHight();
-    
+  
     setInterval(function(){animateHeroSlider()}, 8000);
     
     
@@ -18,49 +14,32 @@ $(document).ready(function(){
 
 // ############################# ANIMATE HEADING #############################
 
-function setHeroSliderHight(){
- 
-    // Hight of view port 
-    var windowHeight = $( window ).height();
-    // Hight of header 
-    var headerHeight = $("header").height();
-    var searchHeight = $("#search-wrapper").height();
-    
-    // minus height of search 
-    heroSliderHeight = windowHeight - headerHeight;
-    heroSliderHeight = heroSliderHeight - searchHeight;
-    
-    $("#hero-slider").height(heroSliderHeight);
-    
-}
 
 slideCount = 1;
+totalSlides = 3;
 function animateHeroSlider(){
     
-    // NEXT SLIDE
-    nextSlide = slideCount+1;
-    // test for end and reset
-     if(nextSlide == 4){
-        nextSlide = 1;  
-     }
     
-   console.log(slideCount);
     
-    $(".slide"+slideCount).removeClass("scale100");
-    $(".slide"+slideCount).addClass("scale200");
+    currentSlide = slideCount;
     
-
-    $(".slide"+nextSlide).addClass("scale100");
-    
- 
-    // increment  slide number 
-    slideCount++;
-    
-    // test for end and reset 
-    if(slideCount == 4){
-        slideCount =1;
+    if(currentSlide == totalSlides){
+        nextSlide = 1;
+    }else{
+        nextSlide = slideCount +1;
     }
     
+    // If next slide is loaded then animate 
+   
 
+        $("#slide-"+currentSlide).hide();
+        $("#slide-"+nextSlide).show();
+
+        slideCount = nextSlide;
+
+
+
+    
+    
 }
 

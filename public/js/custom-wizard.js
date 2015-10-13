@@ -1,9 +1,5 @@
 $(document).ready(function(){
     
-        // Set the initial values 
-         type = "tee";
-         colour = "black";
-         position = "noprint";
     
     
         $('#product-selector').change(function(){
@@ -20,14 +16,17 @@ $(document).ready(function(){
 
                 id = $(this).attr("id");
                 uploadImage(id);
-
+         
+                $("body").addClass("dim-for-loading-body");
+                $("#loading").fadeIn();
+                
         });
     
      // Toggle Template
         $(".toggleTemplate").click(function(){
             
             value = $(this).val();
-            window.location = "custom-printing-wizard?product=12&template="+value;
+            window.location = "custom-printing-wizard?product="+productBaseID+"&template="+value;
         
 //            value = $(this).val();
 //            id = $(this).attr("id");
@@ -44,42 +43,46 @@ $(document).ready(function(){
             
             id = $(this).attr("id");
             id = id.replace('-input', '');
+            side = id.replace('Design', '');
 
             if(this.checked) {
                 $("#"+id).val("1");
+                $("#"+id+"Controls").show();
+                
+                $("#"+id+"Controls input:radio:first").attr('checked', true);
+                element = $("#"+id+"Controls input:radio:first");
+                togglePlacement(element);
+                
+                
             }else{
                 $("#"+id).val("NULL");
-                // NILL OUT ALL OTHER VALUES
+                // Hide Controls 
+                $("#"+id+"Controls").hide();
+                //Clear Form
+                $("#"+id+"IMG_id").val("NULL");
+                $("#"+side+"Placement").val("NULL");
+                $("#removeWhite"+side).val("NULL");
+                
+                imgUploadField = $("#img-upload-"+side+" input");
+                imgUploadField.replaceWith(imgUploadField.val('').clone(true));
+                
+                $("#viewimage-"+side).html("");
+                
+                $("#"+id+"Controls input:radio").attr('checked', false);
+                
             }
             
-            // Update Image
+             // Re-calculate the total to account for second image
+            calucalteSelectedValue();
+        
 
         });
         
         // Toggle Placement
         $(".togglePlacement").click(function(){
             
-        
-            value = $(this).val();
-            id = $(this).attr("id");
-            id = id.replace('-input', '');
-            
-            $("#"+id).val(value);
-          
-            // Toggle front image on and off
-            updateIMG("front","position",value);
-            
-            // Set the Mask
-            // find the placment option
-
-            
-                maskID = id.replace('Placement', '');
-                option = $("#"+maskID+"Placement").val();
-                product = $("#product_id").val();
-                maskID = id.replace('Placement', '');
-  
-                $("#"+maskID+"-image-mask").removeClass();
-                $("#"+maskID+"-image-mask").addClass("product_"+product+"_"+maskID+"do"+option);
+            element = $(this);
+            togglePlacement(element);
             
             
         
@@ -106,77 +109,18 @@ $(document).ready(function(){
     
         
     
-        // Display Code
+        
+    
+    setCSSbyViewport();
+    pageScrolling();
     
     $(window).scroll(function(){
        
-        // How far it has scrolled from top
-        windowScoll = $(window).scrollTop();
-        
-        // Height of Product Wrapper 
-        productWrapperHeight = $("#product-details-wrapper").outerHeight()
-        
-        windowHeight = $(window).height();
-        
-         headerHeight = $("header").height();
-        
-        console.log("Window Scroll "+ windowScoll );
-        console.log("Product Wrapper "+ productWrapperHeight );
-        console.log("Window Height  "+ windowHeight);
-        console.log("HeaderHeight  "+ headerHeight);
-        
-        test = windowHeight + windowScoll;
-        test = test - headerHeight;
-        
-        if(productWrapperHeight <= test){
-       
-            totalScroll = productWrapperHeight + headerHeight;
-            requiredScroll = windowHeight - headerHeight;
-            
-            headerTop = totalScroll - requiredScroll;
-          
-            console.log(headerTop);
-            
-            // Set the Fixed Heights to absolut
-            $("#product-shot-wrapper").css("position","absolute");
-            
-            $("#product-shot-controls").css("position","absolute");
-            
-            $("#add-to-cart").css("position","absolute");
-            $("#add-to-cart").removeClass("col-md-4");
-            $("#add-to-cart").addClass("col-md-12");
-            
-            $("#product-shot-wrapper").css("top",headerTop+"px");
-            $("#product-shot-wrapper").css("left","0px");
-            
-            
-            
-            
-            
-
-        }else{
-         
-               $("#product-shot-wrapper").css("position","fixed");
-            $("#product-shot-wrapper").css("top",headerHeight+"px");
-            $("#product-shot-wrapper").css("left","0px");
-            $("#product-shot-controls").css("position","fixed");
-            
-            $("#add-to-cart").css("position","fixed");
-            $("#add-to-cart").addClass("col-md-4");
-            $("#add-to-cart").removeClass("col-md-12");
-            
-            
-        }
-        
-      
-        
+      pageScrolling();
         
     });
-    
-    // End Display Code
-    
-    setCSSbyViewport();
-    
+    // END OF TEST
+
     $( window ).resize(function(){
       
         setCSSbyViewport();
@@ -184,12 +128,7 @@ $(document).ready(function(){
     });
     
     
-    $("#next").click(function(){
-       
-    
-        
-    });
-    
+  
     
     // Find the first colour and select it
     colourSelect = $("#color-selector ul").find(":first-child").attr("class");
@@ -198,10 +137,13 @@ $(document).ready(function(){
     
     
     $("#color-selector ul li").click(function(){
-      
-        colour = $(this).attr("class");
         
-        selectColour(colour);
+         colour = $(this).attr("class");
+       
+        if (!(colour.indexOf("active") >= 0)){
+                selectColour(colour);
+        }
+      
         
     });
     
@@ -227,9 +169,65 @@ $(document).ready(function(){
     
     $("#add-to-cart-button").click(function(){
 
+       $('#copyrightModal').modal();
+    });
+     
+    $("#confirm-copyright").click(function(){
+
         addToCart();
         
     });
+    
+    
+    
+     /* Left and Right Product Scroll */
+    currentAnchar = 1;
+    numberOfImages = $("#product-shots ul").children().length;
+    
+    $('#next').bind('click',function(event){
+        
+        if(currentAnchar == 4){
+            nextAnchar = 1;
+        }else{
+            nextAnchar = currentAnchar + 1;
+        }
+        
+		var $anchor = $(this);
+		scrollValue = $("#anchor"+nextAnchar).offset().left;
+        console.log(scrollValue);
+
+		$('#product-shot-wrapper').stop().animate({
+			scrollLeft: "+="+scrollValue
+		}, 1000);
+		event.preventDefault();
+        
+        currentAnchar = nextAnchar;
+        
+        
+	});
+    
+    $('#previous').bind('click',function(event){
+		
+        if(currentAnchar == 1){
+            previousAnchar = 4;
+        }else{
+            previousAnchar = currentAnchar - 1; 
+        }
+        
+        scrollValue = $("#anchor"+previousAnchar).offset().left;
+        console.log(scrollValue);
+
+		$('#product-shot-wrapper').stop().animate({
+			scrollLeft: "+="+scrollValue
+		}, 1000);
+		event.preventDefault();
+        
+        currentAnchar = previousAnchar;
+        
+	});
+    
+    
+    
     
     
 });
@@ -266,6 +264,9 @@ function updateIMG(side,section,value){
             $("#img-upload-"+id).ajaxForm({
             success: function(response) {
                 
+//                $("#viewimage-"+id).html('');
+//                $("#viewimage-"+id).html('<img src="assets/images/loading/loading.gif" />');
+//                
                 var obj = jQuery.parseJSON(response);
                 
                 console.log(obj.error);
@@ -274,8 +275,7 @@ function updateIMG(side,section,value){
                   alert(obj.error);  
                 }else{
                 
-                    $("#viewimage-"+id).html('');
-                    $("#viewimage-"+id).html('<img src="assets/images/loading/loading.gif" />');
+                   
                     displayIMG(obj,id);
                
                      $("#"+id+"DesignIMG_id").val(obj.imagename);
@@ -299,58 +299,93 @@ function displayIMG(imgURL,id){
                 width = img.width;
                 
                 if(width >= height){
+             
                     $(img).addClass("landscape");
                 }else{
                     $(img).addClass("portrait");
+                    
                 }
                 
                 
                 // Place In the Wrapper Tag
                 $("#viewimage-"+id).html(img);
 
-
+                    $("body").removeClass("dim-for-loading-body");
+                $("#loading").fadeOut();
+                
             }).error( function() {
-                alert("DANGER!... DANGER!...");
+                alert("Your Image was not succesfully loaded");
             });
             
                   
         }
 
+function togglePlacement(element){
+    
+            value = element.val();
+            id = element.attr("id");
+            id = id.replace('-input', '');
+            
+            $("#"+id).val(value);
+          
+            // Toggle front image on and off
+            // updateIMG("front","position",value);
+            
+            // Set the Mask
+            // find the placment option
 
-function setCSSbyViewport(){
+                template = $("#template").val();
+                maskID = id.replace('Placement', '');
+                option = $("#"+maskID+"Placement").val();
+                product = $("#product_id").val();
+                maskID = id.replace('Placement', '');
     
-//    headerHeight = $("header").height();
-//    wrapperHeight = $( window ).height() - headerHeight;
+                if(template >1){
+                    template = 2;
+                }else{
+                    template = '';
+                }
     
-    headerHeight = $("header").height();
-    windowHeight = $(window).height();
-    
-    wrapperHeight = windowHeight - headerHeight;
-
-    
-    $("#product-shot-wrapper").css("top",headerHeight+"px");
-    $("#product-shot-wrapper").css("height",wrapperHeight+"px");
-    
-    // Set the Product Details to have a min height 
-    
-     $("#product-details-wrapper").css("min-height",wrapperHeight+"px");
-    
-    imageWidth = $("#product-shots ul li").outerWidth(true);
-
-    // Count the amount of child elemenets 
-    count = $("#product-shots ul li").length;
-
-    imageWidth = imageWidth + 40;
-    productShotsWidth = imageWidth * count;
-    
-
-    // set  product-shots to the width of containing images
-    $("#product-shots").width(productShotsWidth);
-    
-    
-    
- 
+            $("#"+maskID+"-image-mask").removeClass();
+            $("#"+maskID+"-image-mask").addClass("product_"+product+"_"+maskID+"do"+option+template);
+            
+           
 }
+
+//function setCSSbyViewport(){
+//    
+////    headerHeight = $("header").height();
+////    wrapperHeight = $( window ).height() - headerHeight;
+//    
+//    headerHeight = $("header").height();
+//    windowHeight = $(window).height();
+//    
+//    wrapperHeight = windowHeight - headerHeight;
+//
+//    
+//    $("#product-shot-wrapper").css("top",headerHeight+"px");
+//    $("#product-shot-wrapper").css("height",wrapperHeight+"px");
+//    
+//    // Set the Product Details to have a min height 
+//    
+//     $("#product-details-wrapper").css("min-height",wrapperHeight+"px");
+//    
+//    imageWidth = $("#product-shots ul li").outerWidth(true);
+//
+//    // Count the amount of child elemenets 
+//    count = $("#product-shots ul li").length;
+//
+//    imageWidth = imageWidth + 40;
+//    productShotsWidth = imageWidth * count;
+//    
+//
+//    // set  product-shots to the width of containing images
+//    $("#product-shots").width(productShotsWidth);
+//    
+//    
+//    
+// 
+//}
 
 function selectColour(colour){
     
@@ -358,80 +393,90 @@ function selectColour(colour){
     $(".stock-selector ul li").removeClass("includeInCount");
     $("#color-selector ul li").removeClass("active");
     
+    // Update the Product Image 
+    $("#front-IMG").attr("src","assets/images/custom/"+productBaseID+"/"+colour+"/front/noprint.jpg")
+    $("#back-IMG").attr("src","assets/images/custom/"+productBaseID+"/"+colour+"/back/noprint.jpg")
+    
      // Focus Colour Selections    
     $(".stock-"+colour).addClass("includeInCount");
     $("#"+colour+"-trigger").addClass("active");
+
+    
     
     // Re Calculate Price
     calucalteSelectedValue()
     
     
 }
-
-function addStockItem(item){
-    
-    id = item.attr("id");
-    currentValue = $(".trackStockQuant"+id).val();
-    newValue = parseInt(currentValue) + 1;
-    $(".trackStockQuant"+id).val(newValue);
-    $("#quantity-selected"+id).html(newValue);
-    
-    // Re Calculate Cart
-    calucalteSelectedValue();
-    
-    if(newValue == 1){
-        convertToSelectedState(item); 
-    }
-    
-}
-
-function removeStockItem(item){
-    
-    id = item.attr("id");
-    currentValue = $(".trackStockQuant"+id).val();
-    newValue = parseInt(currentValue) - 1;
-    $(".trackStockQuant"+id).val(newValue);
-    $("#quantity-selected"+id).html(newValue);
-    
-    // Re Calculate Cart
-    calucalteSelectedValue();
-    
-    if(newValue == 0){
-        convertToUnselectedState(item); 
-    }
-    
-   
-    cartValue = $("#price").html();
-    if(parseInt(cartValue) == 0){
-        
-        $( "#add-to-cart" ).fadeOut();
- 
-    }
-    
-}
-
-
-function convertToSelectedState(item){
-    
-
-    $(item).find(".initialState").hide();
-    $(item).find(".selectedState").show();
-    
-    
-    cartValue = $("#price").html();
-    
-    if(parseInt(cartValue) >= 1){
-    
-        $( "#add-to-cart" ).fadeIn();
- 
-    }
-      
-
-}
+//
+//function addStockItem(item){
+//    
+//    id = item.attr("id");
+//    currentValue = $(".trackStockQuant"+id).val();
+//    newValue = parseInt(currentValue) + 1;
+//    $(".trackStockQuant"+id).val(newValue);
+//    $("#quantity-selected"+id).html(newValue);
+//    
+//    // Re Calculate Cart
+//    calucalteSelectedValue();
+//    
+//    if(newValue == 1){
+//        convertToSelectedState(item); 
+//    }
+//    
+//}
+//
+//function removeStockItem(item){
+//    
+//    id = item.attr("id");
+//    currentValue = $(".trackStockQuant"+id).val();
+//    newValue = parseInt(currentValue) - 1;
+//    $(".trackStockQuant"+id).val(newValue);
+//    $("#quantity-selected"+id).html(newValue);
+//    
+//    // Re Calculate Cart
+//    calucalteSelectedValue();
+//    
+//    if(newValue == 0){
+//        convertToUnselectedState(item); 
+//    }
+//    
+//   
+//    cartValue = $("#price").html();
+//    if(parseInt(cartValue) == 0){
+//        
+//        $( "#add-to-cart" ).fadeOut();
+// 
+//    }
+//    
+//}
+//
+//
+//function convertToSelectedState(item){
+//    
+//
+//    $(item).find(".initialState").hide();
+//    $(item).find(".selectedState").show();
+//    
+//    
+//    cartValue = $("#price").html();
+//    
+//    if(parseInt(cartValue) >= 1){
+//    
+//        $( "#add-to-cart" ).fadeIn();
+// 
+//    }
+//      
+//
+//}
+//
 
 function calucalteSelectedValue(){
     
     runningValue = 0;
+    runningQuantity = 0;
+    
+    
     
     $("#stock-form").find(".includeInCount").each(function(){
        
@@ -439,27 +484,45 @@ function calucalteSelectedValue(){
         price = $(this).find("input[name='stockPrice']").val();
         
         if(quantity >= 1){
-            subtotal = quantity * price;
+            subtotal =  parseInt(quantity) * price;
             runningValue = runningValue + subtotal;
-            
+            runningQuantity = runningQuantity +  parseInt(quantity)
         }
         
-       $("#price").html(runningValue);
         
+      
+        
+      
         
     });
     
+    doublePrint = 0;
+
+    // Add Double Print Surchage
+    if(($("#frontDesign").val() == 1) && (($("#backDesign").val() == 1))){
+
+        doublePrint = runningQuantity * 5;
+            
+    }else{
+        doublePrint = 0;
+       
+    }
+    
+    $("#doublePrint").val(doublePrint);
+    
+    runningValue = runningValue + doublePrint;
+    
+     $("#price").html(runningValue);
+    
+      if(runningValue < 1){
+       $( "#add-to-cart" ).hide();
+    }else{
+            $( "#add-to-cart" ).fadeIn();
+    }
+    
+    
 }
 
-
- function convertToUnselectedState(item){
-    $(item).find(".initialState").show();
-    $(item).find(".selectedState").hide();
-    
-       
-     
-     
- }
 
 
 function addToCart(){
@@ -469,6 +532,13 @@ function addToCart(){
     data = [];
     customProduct = [];
     product_id = $("input[name='product_id']").val();
+    
+    if($("input[name='addon']").is(":checked")){
+       addon = "true";
+    }
+    else{
+       addon = "false";
+    }
     
     customProduct.push(["product_id",$("#product_id").val()]);
     customProduct.push(["template",$("#template").val()]);
@@ -480,8 +550,13 @@ function addToCart(){
     customProduct.push(["backDesignIMG_id",$("#backDesignIMG_id").val()]);
     customProduct.push(["backPlacement",$("#backPlacement").val()]);
     customProduct.push(["removeWhiteback",$("#removeWhiteback").val()]);
+    customProduct.push(["doublePrint",$("#doublePrint").val()]);
+    customProduct.push(["addon",addon]);
     
     data.push(customProduct);
+    
+    
+    
     
     $("#stock-form").find(".includeInCount").each(function(){
         
@@ -496,18 +571,44 @@ function addToCart(){
 
      });
     
-   
+   if(($("#frontDesign").val() == 1) && ($("#frontDesignIMG_id").val() == "NULL")){
+            errorFrontDesign = "fail";   
+            $("#errorFrontDesign").show();
+   }else{
+            errorFrontDesign = "pass"; 
+       $("#errorFrontDesign").hide();
+   }
     
-    $.post( "php/POST/custom-add-to-cart",{data}, function( data ) {
+    if(($("#backDesign").val() == 1) && ($("#backDesignIMG_id").val() == "NULL")){
+            errorBackDesign = "fail"; 
+        $("#errorBackDesign").show();
+   }else{
+            errorBackDesign = "pass";  
+       $("#errorBackDesign").hide();
+   }
+    
+    if(($("#backDesign").val() != 1) && ($("#frontDesign").val() != 1)){
+            errorNoDesigns = "fail"; 
+        $("#errorNoDesigns").show();
+    }else{
+            errorNoDesigns = "pass"; 
+        $("#errorNoDesigns").hide();
+   }
+    
+    if((errorFrontDesign == "pass") && (errorBackDesign == "pass") && (errorNoDesigns == "pass") ){
         
-        $("#results").html("<pre>"+data+"</pre>");    
+    
+    
+    $.post( "php/POST/custom-add-to-cart",{"data":data}, function( data ) {
         
-      //  location.reload();
+//      $("#results").html("<pre>"+data+"</pre>");    
+        
+     location.reload();
         
         
     });
     
-   
+   }
     
     
 };

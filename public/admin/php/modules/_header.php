@@ -1,3 +1,13 @@
+<?php  ob_start("ob_gzhandler");?>
+<?php  session_start(); ?>
+<?php
+    if(!isset($_SESSION['user'])){
+         header( 'Location: http://theclubofoddvolumes.com/login.php' ); 
+    }else{
+         
+    }
+
+?>
 <?php   include ('../../includes/database.php'); ?>
 <?php   include ('../../includes/admin-functions.php'); ?>
 

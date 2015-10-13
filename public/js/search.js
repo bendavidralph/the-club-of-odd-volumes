@@ -3,14 +3,22 @@ $(document).ready(function(){
     
     $("#search-trigger").click(function(){
         
-                 submitSearch() ;
+                 submitSearch();
     
     });
     
     $(document).keypress(function(e) {
     if(e.which == 13) {
+        if($("#search-value").is(":focus")){
         submitSearch();
     }
+    }
+    });
+    
+    $("#search-value").change(function(){
+       
+        submitSearch();
+        
     });
     
     

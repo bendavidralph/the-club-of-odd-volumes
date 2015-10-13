@@ -6,11 +6,13 @@
 
 <?php 
 
-$count = 0;
-
-
-
+    $count = 0;
+    
+    
     $customProductInfo = $_POST["data"][0];
+
+    print_r($customProductInfo);
+    
     unset($_POST["data"][0]);
 
     // Add Product info into an associative array
@@ -18,19 +20,27 @@ $count = 0;
      
             $addProduct[$value[0]] =  $value[1];
           
-        
     }
 
     $product_id = insert_DB('customProduct',$addProduct);
-    
-    foreach($_POST["data"] as $key => $value){
 
+
+    foreach($_POST["data"] as $key => $value){
+        
+        
         $product_id = $product_id;
         $stock_id = $value[1];
         $quant = $value[2];
+        $addon = $addProduct['addon'];
 
-        $_SESSION["cart"]["products"][$product_id][$stock_id] = $_SESSION["cart"][$product_id][$stock_id] + $quant;
+        $_SESSION["cart"]["customProducts"][$product_id][$stock_id] = $_SESSION["cart"][$product_id][$stock_id] + $quant;
 
+        if($addon == "true"){
+        $_SESSION["cart"]["customProducts"][$product_id]["addon"] = "true";
+        }else{
+            $_SESSION["cart"]["customProducts"][$product_id]["addon"] = "false";
+        }
+        
         $count = $count +  $quant; 
 
 

@@ -66,7 +66,7 @@
             
             <section class="row">
                 <div id="subtotal-label" class=" col-xs-6">Subtotal</div>
-                <div id="subtotal-value"  class="value col-xs-6">$<?php   echo $cartValues['product'] ?></div>
+                <div id="subtotal-value"  class="value col-xs-6">$<?php   echo number_format($cartValues['product'],2) ?></div>
             </section>
                 
             <section class="row">
@@ -76,7 +76,7 @@
                     if(isset($cartValues['shippingWarning'])){
                         echo $cartValues['shippingWarning']; 
                     }else{
-                        echo "$".$cartValues['shipping']; 
+                        echo "$".number_format($cartValues['shipping'],2); 
                     }
         
                 
@@ -87,7 +87,7 @@
             
             <section class="row">
                 <div id="total" class=" col-xs-6">Total</div>
-                <div id="total-value" class="value col-xs-6">$<?php   echo $cartValues['product']+$cartValues['shipping'];  ?></div>
+                <div id="total-value" class="value col-xs-6">$<?php   echo number_format($cartValues['product']+$cartValues['shipping'],2);  ?></div>
             </section>
             
           

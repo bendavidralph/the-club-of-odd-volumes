@@ -5,7 +5,7 @@
 <?php 
 
 
-            $quant = cartTotal();
+            $quant = calculateCartQuant();
             
     
             if(!$quant >= 1){
@@ -20,83 +20,38 @@
                 // Set Count to Count Total Cost
                 $totalCost = 0;
                 
-                foreach($_SESSION["cart"]["products"] as $productID => $value){
-                 
-                    // Get the design information
-                    $productQuery = "SELECT productName, surcharge, artist_id FROM product WHERE id = '{$productID}' LIMIT 1";
-                    $productResult = queryDB($productQuery);
+                if(isset($_SESSION["cart"]["products"])){
                     
-                     while($row = mysqli_fetch_assoc($productResult)){
-                         
-                    $artist_id = $row['artist_id'];
-                    $productName = $row["productName"];
-                    $productSurcharge = $row["surcharge"];
-
-            ?>  
                     
-                    <div class="container-fluid cart-product-result">
-                    <section class="row">
-                    
-                    <div class="col-xs-6">    
-                    <img class="img-responsive" src="assets/images/product/<?php echo $artist_id; ?>/<?php   echo $productID; ?>/SM/1.jpg">
-                    </div>   
+                    foreach($_SESSION["cart"]["products"] as $productID => $value){
                         
-                    <div class="cart-product-info col-xs-6"> 
-                    <h4><?php   echo $productName; ?></h4> 
-
-                    
-
-            <?php                   
-
-                         
-                     } // End Product While
-                    
-                    $productTotalCost = 0;
-                    foreach($value as $key => $value){
-                     
-                        // Get the Stock Information 
-                         $stockQuery = "SELECT * FROM stock WHERE id = '{$key}' LIMIT 1";
-                         $stockResult = queryDB($stockQuery);
-                    
-                     while($row = mysqli_fetch_assoc($stockResult)){
-                         
-                         $subTotal = $row["surcharge"] + $productSurcharge;
-                        
-                        echo "<p>". 
-                        $value . " x " . 
-                        $row["size"] . " " . 
-                        $row["sizeCategory"] . " / " .
-                        $row["color"] . " / ".
-                        $row["base"] . " - ".
-                        "$".$subTotal."</p>";    
-                         
                       
-                        $subTotal = $subTotal * $value;
-                         
-                        $productTotalCost = $productTotalCost + $subTotal;
-                         
-                        
-                         
-                         
-                     } // End Stock While
-                        
-                        
-                    } // End Stock ForEach
-                    $totalCost = $totalCost + $productTotalCost;
-                    
-?>
+                         // test for addons
+                            if(isset($value['addon']) && ($value['addon'] == "true")){
+                               $addon = 10;
+                            }else{
+                              $addon = 0;
+                            }
 
-                    
-                        </div>
-                        <div class="remove-product"><a href="php/POST/remove-from-cart.php?id=<?php echo $productID ?>">REMOVE</a></div>
-                        <div class="cart-product-subtotal">$<?php   echo $productTotalCost; ?></div>
-                        </section>
-                    </div>
-                        
-                    
-<?php                      
-                } // End Product ForEach 
+                        displayCartItem($productID,$value,"product",$addon);
+
+                    } // End Product ForEach 
+                }
                 
+                if(isset($_SESSION["cart"]["customProducts"])){ 
+                     foreach($_SESSION["cart"]["customProducts"] as $productID => $value){
+                        
+                          // test for addons
+                            if(isset($value['addon']) && ($value['addon'] == "true")){
+                               $addon = 10;
+                            }else{
+                              $addon = 0;
+                            }
+                         
+                        displayCartItem($productID,$value,"custom",$addon);
+
+                    } // End Product ForEach 
+                }
             
                 
                 
@@ -107,17 +62,24 @@
 
 <?php 
 
-    if($quant >= 1){
+    
 
-        echo "
-          <div id='cart'>
+    if($quant >= 1){
+        $totalCost = calculateCartValue(); 
+        
+        if($totalCost['customDiscount'] > 0){
+            echo "<div id='cartBulkDiscount'>Custom Bulk Discount \${$totalCost['customDiscount']}</div>";   
+        }
+        
+        
+        echo "<div id='cart'>
 
 
                 </div>
 
                 <div id='total-wrapper'>
                     <div id='total-label'>TOTAL</div>
-                    <div id='total-amt'>\${$totalCost}</div>
+                    <div id='total-amt'>\${$totalCost['product']}</div>
                 </div>
 
                 <div id='checkout-button'><a href='checkout.php'>CHECKOUT</a></div>

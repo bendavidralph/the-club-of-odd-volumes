@@ -47,12 +47,12 @@
     
     <section id="size-thumbnail-wrapper" class="row">
     
-        <div class="col-xs-12 col-sm-6 col-md-2" data-toggle="modal" data-target=".baby-size-modal"><img src="assets/images/sizing/thumbnails/baby.jpg" class="img-responsive"></div>
-        <div class="col-xs-12 col-sm-6 col-md-2" data-toggle="modal" data-target=".kid-size-modal"><img src="assets/images/sizing/thumbnails/kids.jpg" class="img-responsive"></div>
-        <div class="col-xs-12 col-sm-6 col-md-2" data-toggle="modal" data-target=".tee-size-modal"><img src="assets/images/sizing/thumbnails/tee.jpg" class="img-responsive"></div>
-        <div class="col-xs-12 col-sm-6 col-md-2" data-toggle="modal" data-target=".jumper-size-modal"><img src="assets/images/sizing/thumbnails/jumper.jpg" class="img-responsive"></div>
-         <div class="col-xs-12 col-sm-6 col-md-2" data-toggle="modal" data-target=".tote-size-modal"><img src="assets/images/sizing/thumbnails/tote.jpg" class="img-responsive"></div>
-        <div class="col-xs-12 col-sm-6 col-md-2" data-toggle="modal" data-target=".homeware-size-modal"><img src="assets/images/sizing/thumbnails/homewares.jpg" class="img-responsive"></div>
+        <div class="col-xs-6 col-sm-4 col-md-2" data-toggle="modal" data-target=".baby-size-modal"><img src="assets/images/sizing/thumbnails/baby.jpg" class="img-responsive"></div>
+        <div class="col-xs-6 col-sm-4 col-md-2" data-toggle="modal" data-target=".kid-size-modal"><img src="assets/images/sizing/thumbnails/kids.jpg" class="img-responsive"></div>
+        <div class="col-xs-6 col-sm-4 col-md-2" data-toggle="modal" data-target=".tee-size-modal"><img src="assets/images/sizing/thumbnails/tee.jpg" class="img-responsive"></div>
+        <div class="col-xs-6 col-sm-4 col-md-2" data-toggle="modal" data-target=".jumper-size-modal"><img src="assets/images/sizing/thumbnails/jumper.jpg" class="img-responsive"></div>
+         <div class="col-xs-6 col-sm-4 col-md-2" data-toggle="modal" data-target=".tote-size-modal"><img src="assets/images/sizing/thumbnails/tote.jpg" class="img-responsive"></div>
+        <div class="col-xs-6 col-sm-4 col-md-2" data-toggle="modal" data-target=".homeware-size-modal"><img src="assets/images/sizing/thumbnails/homewares.jpg" class="img-responsive"></div>
         
     
     </section>

@@ -12,22 +12,24 @@
             </div>
         </div>
         
-            <nav>
+            <nav id="footer">
                 <ul>
                     <li><a href="contact.php">CONTACT</a></li>
-                    <li>/</li>
+                    <li class="divider">/</li>
                     <li><a href="sizing.php">SIZING</a></li>
-                    <li>/</li>
+                    <li class="divider">/</li>
                     <li><a href="sizing.php#refunds">RETURNS</a></li>
-                    <li>/</li>
+                    <li class="divider">/</li>
                     <li><a href="faq.php">FAQ</a></li>
-                    <li>/</li>
+                    <li class="divider">/</li>
                     <li><a href="join-the-odd-collective.php">JOIN THE ODD COLLECTIVE</a></li>
-                    <li>/</li>
+                    <li class="divider">/</li>
                     <li><a href="artist-directory.php">ARTIST DIRECTORY</a></li>
-                    <li>///</li>
+                    <li class="divider">/</li>
+                    <li><a href="privacy">PRIVACY</a></li>
+                    <li class="divider">///</li>
                     <li><a href="custom-printing-bulk-pricing.php">CUSTOM PRINTING  BULK PRICING</a></li>
-                    <li>/</li>
+                    <li class="divider">/</li>
                     <li><a href="file-set-up-tips.php">FILE SET UP TIPS</a></li>
                 </ul>
             </nav>
@@ -36,7 +38,7 @@
 
 
 
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="js/jquery-1.11.3.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>  
 <script src="js/project-functions.js"></script>  
 

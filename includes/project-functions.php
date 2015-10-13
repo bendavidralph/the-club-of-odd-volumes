@@ -10,14 +10,16 @@
      
     $colours = getProductColours($template_id);
     
-    $product = '<div class="col-xs-10 col-xs-push-1 col-sm-4 col-sm-push-0">
-                <div class="product-wrapper">
-                    
-                <div class="available-colors">'.$colours.'</div>';
+    $product = '<div class="col-xs-6  col-sm-4 ">
+                <div class="product-wrapper">';
     
     if($productInfo['newFlag']){
     $product = $product. '<div class="new-flag">NEW</div>';
     }
+        
+    $product = $product . '<div class="available-colors">'.$colours.'</div>';
+    
+    
         
     $product = $product. '<a href="product.php?id='.$id.'">
                     <div class="product-image">    
@@ -190,6 +192,7 @@ function collectAndProccessFilters(){
         if(isset($_SESSION['cart'])){
          
             // For Each Product 
+            if(isset($_SESSION["cart"]["products"])){
             foreach($_SESSION["cart"]["products"] as $key => $value){
              
                 // For Each Stock Item
@@ -197,6 +200,18 @@ function collectAndProccessFilters(){
                       $count = $count + $quant; 
                 }
               
+            }
+            }
+            
+            if(isset($_SESSION["cart"]["customProducts"])){
+            foreach($_SESSION["cart"]["customProducts"] as $key => $value){
+             
+                // For Each Stock Item
+                foreach($value as $quant){
+                      $count = $count + $quant; 
+                }
+              
+            }
             }
             
             return $count;
@@ -215,21 +230,34 @@ function collectAndProccessFilters(){
         $total['shipping'] = 0;
         $total['product'] = 0;
         $total['weight'] = 0;
+        $total['customProduct'] = 0;
+        $total['customQuant'] = 0;
+        $total['customDiscount'] = 0;
         
-         if(isset($_SESSION['cart'])){
+        if(isset($_SESSION['cart'])){
          
             // For Each Product 
+            if(isset($_SESSION["cart"]["products"])){
             foreach($_SESSION["cart"]["products"] as $key => $value){
              
                 $product =  queryById('product',$key); 
+                
+                // test for addons
+                if(isset($value['addon']) && ($value['addon'] == "true")){
+                    $addon = 10;
+                }else{
+                    $addon = 0;
+                }
 
                 //For Each Stock Item 
                 foreach($value as $stock_id => $quant){
                     
+                    if(!($stock_id == "addon")){
+                    
                     $stock =  queryById('stock',$stock_id); 
                     
                     // Calculate Price x Quantitity 
-                    $runningTotal = $stock["surcharge"] + $product["surcharge"];
+                    $runningTotal = $stock["surcharge"] + $product["surcharge"] + $addon;
                     $runningTotal = $runningTotal * $quant;
                     
                     // Add Price to Total
@@ -239,10 +267,66 @@ function collectAndProccessFilters(){
                     $runningWeightTotal = $stock['weight'] * $quant;
                     $total['weight'] = $total['weight'] + $runningWeightTotal;
                     
-                }
+                    }}
                     
               
+            } // End Product 
+                
+     
+                
             }
+            
+            
+            // For Each Custom Product 
+            if(isset($_SESSION["cart"]["customProducts"])){
+            foreach($_SESSION["cart"]["customProducts"] as $key => $value){
+          
+                $product =  queryById('customProduct',$key); 
+
+                 // test for addons
+                if(isset($value['addon']) && ($value['addon'] == "true")){
+                    $addon = 10;
+                }else{
+                    $addon = 0;
+                }
+
+                //For Each Stock Item 
+                foreach($value as $stock_id => $quant){
+
+                    if(!($stock_id == "addon")){    
+                    $stock =  queryById('stockCustom',$stock_id); 
+
+                    // Calculate Price x Quantitity 
+                    $runningTotal = $stock["surcharge"] + $addon;
+                   
+                    $runningTotal = $runningTotal * $quant;
+                    
+                    // Add Quant to Running Quant Counter
+                    $total['customQuant'] = $total['customQuant'] + $quant;
+                     
+                    // Add Price to Total
+                    $total['customProduct'] = $total['customProduct'] + $runningTotal;
+                    
+                    // Calculate Weight 
+                    $runningWeightTotal = $stock['weight'] * $quant;
+                    $total['weight'] = $total['weight'] + $runningWeightTotal;
+                    
+                    }}
+                    
+                $total['customProduct'] = $total['customProduct'] + $product["doublePrint"];
+
+                
+                
+            } // End Custom Product 
+                
+            // Calculate Discount
+            $total['customDiscount'] = calculateCustomDiscount($total['customProduct'],$total['customQuant']);
+            $total['product'] = $total['product'] + ($total['customProduct'] -  $total['customDiscount']);
+                
+            }
+            
+            
+            
              
              if($counrty == "notSelected"){
                  
@@ -292,4 +376,242 @@ function queryById($table,$id){
     
 }
 
+
+function displaySizingPopUp($category_id){
+    
+    
+    if($category_id == 1){
+        $sizeModal = "tee";
+    }
+    
+    switch ($category_id) {
+    case 1:
+        $sizeModal = "tee";
+        break;
+    case 2:
+        $sizeModal = "jumper";
+        break;
+    case 3:
+        $sizeModal = "baby";
+        break;
+    case 4:
+        $sizeModal = "tote";
+        break;
+    case 5:
+        $sizeModal = "homeware";
+        break;
+    case 6:
+        $sizeModal = "homeware";
+        break; 
+    case 7:
+        $sizeModal = "homeware";
+        break; 
+    case 8:
+        $sizeModal = "homeware";
+        break; 
+
+}
+    
+
+?>  
+  <div class="modal fade sizing" tabindex="-1" role="dialog" aria-labelledby="This is a label">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+         <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Sizing</h4>
+      </div>
+      <div class="modal-body">
+        <section class="row">
+          <img src="assets/images/sizing/<?php echo $sizeModal; ?>.jpg" class="img-responsive"   >
+        </section>
+    </div>
+  </div>
+</div>
+</div>
+
+<?php
+                                          
+}
+
 ?>
+
+
+<?php
+
+    function displayProductInfoInCart($imgURL,$productName){
+?>        
+        
+    <div class="container-fluid cart-product-result">
+    <section class="row">
+
+    <div class="col-xs-6">    
+    <img class="img-responsive" src="assets/<?php echo $imgURL; ?>">
+    </div>   
+
+    <div class="cart-product-info col-xs-6"> 
+    <h4><?php   echo $productName; ?></h4>    
+        
+<?php        
+    }
+
+?>
+
+<?php 
+
+   function displayCartItem($productID,$value,$type,$addon = 0){
+    
+                    if($type == "custom"){
+                        
+                            // Get the design information
+                            $productQuery = "SELECT frontDesign, frontDesignIMG_id, backDesign, backDesignIMG_id, doublePrint, discount FROM customProduct WHERE id = '{$productID}' LIMIT 1";
+                            $productResult = queryDB($productQuery);
+
+
+                    while($row = mysqli_fetch_assoc($productResult)){
+
+                                
+                                $productName = "Custom Product";
+                                $doublePrint = $row["doublePrint"];
+                                $discount = $row["discount"];
+                                
+                                if($row["frontDesign"] == 1){
+                                    $productIMG = $row["frontDesignIMG_id"];
+                                }else{
+                                    $productIMG = $row["backDesignIMG_id"];
+                                }
+                                
+                                
+                                
+                                $imgURL = "custom-image-uploads/{$productIMG}";
+                                
+                                displayProductInfoInCart($imgURL,$productName);
+                                
+                               $stockTableName = "stockCustom";
+
+                            } // End Product While
+                        
+                    }else{
+                            // Get the design information
+                            $productQuery = "SELECT productName, surcharge, artist_id FROM product WHERE id = '{$productID}' LIMIT 1";
+                            $productResult = queryDB($productQuery);
+
+
+                            while($row = mysqli_fetch_assoc($productResult)){
+
+                                $artist_id = $row['artist_id'];
+                                $productName = $row["productName"];
+                                $productSurcharge = $row["surcharge"];
+                                $imgURL = "images/product/{$productID}/SM/1.jpg";
+                                displayProductInfoInCart($imgURL,$productName);
+                                
+                                $stockTableName = "stock";
+
+                            } // End Product While
+                    }
+       
+                 
+                    
+                    $productTotalCost = 0;
+                    $runningQuant = 0;
+                    foreach($value as $key => $value){
+                     
+                        // Get the Stock Information 
+                        
+                          $stockQuery = "SELECT * FROM {$stockTableName} WHERE id = '{$key}' LIMIT 1";
+                          $stockResult = queryDB($stockQuery);
+                    
+                         while($row = mysqli_fetch_assoc($stockResult)){
+                         
+                        if(isset($productSurcharge)){
+                            $subTotal = $row["surcharge"]+$productSurcharge + $addon; 
+                        }else{
+                            $subTotal = $row["surcharge"] + $addon;
+                        }
+                          
+                        
+                        echo "<p>"; 
+                        echo $value . " x " . 
+                        $row["description"] . " - ".
+                        "$".$subTotal;
+                            
+                        if($addon >= 1){
+                            echo " including insert";   
+                        } 
+                             
+                        echo "</p>";    
+                         
+                       
+                             
+                        // Set Running $quant for Product 
+                        $runningQuant = $runningQuant + $value;
+                      
+                        $subTotal = $subTotal * $value;
+                         
+                        $productTotalCost = $productTotalCost + $subTotal;
+                         
+                        
+                         
+                         
+                     } // End Stock While
+                        
+                        
+                    } // End Stock ForEach
+       
+                    if(isset($doublePrint) && $doublePrint > 1){
+                       echo "<p class='addOn'>{$runningQuant} x double prints ($5 each) <br><strong>Total \${$doublePrint}</strong></p>";
+                
+                        $productTotalCost = $productTotalCost + $doublePrint;
+                        
+                    }
+        
+                    
+                   
+                 
+?>
+
+                    
+                        
+        
+                        </div>
+                        <div class="remove-product"><a href="php/POST/remove-from-cart.php?id=<?php echo $productID ?>&type=<?php echo $type ?>">REMOVE</a></div>
+                        <div class="cart-product-subtotal">$<?php   echo $productTotalCost; ?></div>
+                        </section>
+                    </div>
+                        
+                    
+<?php  
+       
+   }
+
+
+    function calculateCustomDiscount($total,$quant){
+
+    if($quant < 5 ){
+         $discount = 0;
+         
+    }else if($quant >= 5 && $quant <= 19){
+         
+        $discount = $total *.1;
+        $discount = round($discount, 2);
+        
+        
+     }else if($quant >= 20 && $quant <= 49){
+    
+        $discount = $total *.2;
+        $discount = round($discount, 2);
+        
+     }else if($quant >= 50){
+ 
+        $discount = $total *.35;
+        $discount = round($discount, 2);
+      
+     }
+
+      return $discount;  
+        
+    }
+        
+?>
+
+

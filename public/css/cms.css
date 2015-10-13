@@ -10,7 +10,9 @@
    text-align: right !important;     
 }
 
-
+main a{
+    text-decoration: underline;
+}
 
 
 /* ################# POPUP ####################*/
@@ -52,29 +54,44 @@ h2{
     
 }
 
-.artist-details{
+.artist-details-wrapper{
     position: relative;
-    background-color: #f6f6f6;  
+    background-color: #f6f6f6; 
     margin:0;
     padding: 0 0 0 22px;
+    height:60px;
+    overflow: hidden;
+}
+
+.artist-details{
+    position: relative;
+    margin:0;
+/*    padding: 0 0 0 22px;*/
+    top: 50%;
+    overflow: hidden;
+    width:60%;
+    
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    
 }
 
 .artist-details h4{
     font-family: HelveticaNeueLTPro-Bd; 
     font-size:14px;
     margin:0;
-    padding:22px 0 5px 0;
-    width:60%;
+/*    padding:22px 0 5px 0;*/
+    
     
 }
-
-
-
 
 .artist-details h5{
     font-size:9px;
     margin:0;
-    padding:0 0 22px 0;
+    padding:0 0 0 0;
 }
 
 .social-wrapper{
@@ -82,7 +99,11 @@ h2{
     right:10px;
     top: 50%;
     overflow: hidden;
-  transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);    
     
 }
 
@@ -95,7 +116,7 @@ h2{
 
     width: 100%;
     text-align: center;   
-    margin: 0;
+    margin: 20px 0 0 0;
     padding:20px 0;
     font-family: HelveticaNeueLTPro-Bd; 
 }
@@ -107,6 +128,10 @@ h2{
     opacity: 0.8;
     cursor: pointer;
     
+}
+
+#size-thumbnail-wrapper div{
+    margin-bottom:20px;   
 }
 
 #returns{
@@ -139,3 +164,47 @@ h2{
 #contact-us-img-4{
     margin-top:50px;   
 }
+
+
+
+
+/* ########## Join the odd collective ############/*/
+
+#join-the-odd-collective h3{
+    margin-top:0;
+}
+
+#join-the-odd-collective ul{
+    list-style: none;
+     padding:0;
+}
+
+
+#join-the-odd-collective li{
+    margin:50px 0;
+    padding:0;
+}
+
+.circle{
+    background-color:#d1d1d1;
+    border:1px solid #3d3d3d;
+    padding:10px 12px;
+    border-radius: 20px;
+    float: right;
+}
+
+
+
+/* ##################### ARTIST ######################## */
+
+#previous-artist-wrapper{
+ 
+    margin:40px 0 0 0;   
+    
+}
+
+
+
+
+
+

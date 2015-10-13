@@ -50,14 +50,16 @@
 <div class="radio">
   <label>
   <input type="radio" name="shippingMethod"value="australia" <?php   if($checked == 'australia'){ echo "checked"; }?> >
-    Standard Shipping 
+    Standard Shipping (2-14 days)
   </label>
 </div>
 <div class="radio">
   <label>
  <input type="radio" name="shippingMethod" value="ausExpress" <?php   if($checked == 'ausExpress'){ echo "checked"; }?>>
-   Express Post
+      Express Post (1-4 days) 
   </label>
+<br><br>    
+ <p class="small">Post time only. Please allow a few days for printing as everything is made-to-order.</p>    
 </div>
 
 <hr>

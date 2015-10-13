@@ -1,34 +1,21 @@
 #hero-slider{
-    background-color: #000000;
+    background-image: url(../assets/images/loading/loading.GIF);
+    background-repeat: no-repeat;
+    background-position: center;
+    
     position: relative;
-    height:700px;
+    min-height: 100px;
     overflow: hidden;
+    padding: 0;
+    border-bottom: 1px solid #dbdbdb;
 
 }
 
 .slide{
-    position: absolute;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-    top: 0px;
-    left:0px;
-    opacity: 0;
+
+    display:none;
 
     
-    
 }
 
 
-.scale100{
-   
-    opacity: 1;
-
-}
-
-.scale200{
-  
-}

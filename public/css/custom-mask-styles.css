@@ -1,7 +1,7 @@
 /*TSHIRT*/
 
 .product_1_frontdo1{
- 
+
     width:13%;
     height:11.4%;
     top: 30%;
@@ -20,15 +20,186 @@
 
 .product_1_backdo1{
  
-    width:13%;
-    height:11.4%;
-    top: 30%;
-    left: 56%;
+    width:14.1%;
+    height:13.1%;
+    top: 18.1%;
+    left: 42.3%;
     
 }
 
 .product_1_backdo2{
     width:39.5%;
+    height:34.7%;
+    top: 25.3%;
+    left: 29.1%;
+
+    
+}
+
+
+/*TOTE*/
+
+.product_11_frontdo1{
+    width:37.2%;
+    height:33.3%;
+    top: 51.6%;
+    left: 29.2%;
+    
+}
+
+.product_11_frontdo2{
+    width:52.0%;
+    height:46%;
+    top: 45.1%;
+    left: 21.9%;
+
+    
+}
+
+.product_11_backdo1{
+ 
+   width:37.2%;
+    height:33.3%;
+    top: 51.6%;
+    left: 29.2%;
+    
+}
+
+.product_11_backdo2{
+     width:52.0%;
+    height:46%;
+    top: 45.1%;
+    left: 21.9%;
+    
+}
+
+
+/* PILLOWCASE */
+
+.product_12_frontdo1{
+
+    width:49%;
+    height:48%;
+    top: 25%;
+    left: 24%;
+
+    
+}
+
+.product_12_backdo1{
+
+    width:49%;
+    height:48%;
+    top: 25%;
+    left: 24%;
+
+    
+}
+
+
+
+.product_12_frontdo12{
+    
+    width:61.9%;
+    height:38.0%;
+    top: 11.5%;
+    left: 16.9%;
+    
+}
+
+.product_12_backdo12{
+  
+    width:61.9%;
+    height:38.0%;
+    top: 50.5%;
+    left: 16.9%;
+    
+}
+
+/* TEA TOWEL */
+
+.product_10_frontdo1{
+   
+    width:61.3%;
+    height:53.9%;
+    top: 22.8%;
+    left: 18.7%;
+    
+}
+
+
+.product_10_frontdo12{
+    
+    width:70.6%;
+    height:40.0%;
+    top: 9.8%;
+    left: 13.7%;
+    
+}
+
+.product_10_backdo12{
+  
+    width:70.6%;
+    height:40.0%;
+    top: 50.8%;
+    left: 13.7%;
+    
+}
+
+
+/*KIDS TEA*/
+
+.product_7_frontdo1{
+  
+    width:13%;
+    height:11.4%;
+    top: 33.5%;
+    left: 54.5%;
+    
+}
+
+.product_7_frontdo2{
+     width:39.5%;
+    height:34.7%;
+    top: 33.3%;
+    left: 27.6%;
+
+    
+}
+
+.product_7_backdo1{
+ 
+    width:14.1%;
+    height:13.1%;
+    top: 25.1%;
+    left: 44.3%;
+    
+}
+
+.product_7_backdo2{
+     width:39.5%;
+    height:34.4%;
+    top: 25.6%;
+    left: 28.7%;
+}
+
+
+
+
+
+/*KIDS JUMPER*/
+
+.product_6_frontdo1{
+  
+    width:13%;
+    height:11.4%;
+    top: 33.9%;
+    left: 55.8%;
+    
+}
+
+.product_6_frontdo2{
+     width:39.5%;
     height:34.7%;
     top: 30%;
     left: 29.5%;
@@ -36,26 +207,102 @@
     
 }
 
-
-/* PILLOWCASE */
-
-.product_12_frontdo2{
+.product_6_backdo1{
  
-    width:49%;
-    height:48%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-54%,-50%);
+     width:14.1%;
+    height:13.1%;
+    top: 24.1%;
+    left: 47.3%;
+    
+}
+
+.product_6_backdo2{
+     width:39.5%;
+    height:34.4%;
+    top: 25.6%;
+    left: 33.1%;
+}
+
+
+
+/*JUMPER*/
+
+.product_5_frontdo1{
+  
+    width:13%;
+    height:11.4%;
+    top: 29.9%;
+    left: 55.8%;
+    
+}
+
+.product_5_frontdo2{
+     width:39.5%;
+    height:34.7%;
+    top: 30%;
+    left: 29.5%;
+
+    
+}
+
+.product_5_backdo1{
+ 
+     width:14.1%;
+    height:13.1%;
+    top: 18.1%;
+    left: 46.3%;
+    
+}
+
+.product_5_backdo2{
+     width:39.5%;
+    height:34.4%;
+    top: 25.6%;
+    left: 33.5%;
+}
+
+
+/*CUSION*/
+
+.product_9_frontdo1{
+  
+   width:51.5%;
+    height:40.4%;
+    top: 29.6%;
+    left: 23.5%;
+    
+}
+
+.product_9_frontdo2{
+     width:75.0%;
+    height:58.4%;
+    top: 20.6%;
+    left: 11.8%;
+
     
 }
 
 
-.product_12_backdo2{
- 
-    width:49%;
-    height:48%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-54%,-50%);
+
+/*BABY*/
+
+.product_2_frontdo1{
+  
+    width:39.3%;
+    height:34.4%;
+    top: 24.6%;
+    left: 29.6%;
     
 }
+
+
+
+.product_2_backdo1{
+   width:39.3%;
+    height:34.4%;
+    top: 20.8%;
+    left: 29.6%;
+    
+}
+
+

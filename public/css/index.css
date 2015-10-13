@@ -50,8 +50,7 @@ h2{/* override */
 }
 
 #banner-1{
-    background-image:url(../assets/images/home-banner/home-banner-1.png);
-    height: 400px;
+   padding: 0;
     margin-bottom: 50px;
 }
 

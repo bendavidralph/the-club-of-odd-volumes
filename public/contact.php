@@ -1,5 +1,5 @@
 <?php 
-    $styleSheets = ["CMS"];
+    $styleSheets = ["cms","cms-mobile"];
     $pageTitle = "Contact";
     $scripts = ["anchors"];
     include ('php/modules/_header.php');

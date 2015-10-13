@@ -1,4 +1,3 @@
-
 <?php 
     $styleSheets = ["index"];
     $pageTitle = "Site Admin";
@@ -18,7 +17,8 @@
         "Size", 
         "Color", 
         "Price", 
-        "InStock"
+        "InStock",
+        "Description"
     ];
 
     $columns = [
@@ -29,7 +29,8 @@
         "size" => "text",
         "color" => "text",
         "surcharge" => "text",
-        "inStock" => "toggle"
+        "inStock" => "toggle",
+        "description" => "text"
     ];
 
     // Table being queried 

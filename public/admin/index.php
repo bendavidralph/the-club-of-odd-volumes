@@ -1,4 +1,3 @@
-
 <?php 
     $styleSheets = ["index"];
     $pageTitle = "Site Admin";
@@ -14,7 +13,7 @@
         <li><a href="product-template.php">Product Template</a></li>
         <li><a href="stock.php">Stock Item</a></li>
         <li><a href="assign-stock-to-product-template.php">Assign Stock to a Product Template</a></li>
-
+<li><a href="shipping.php">Shipping</a></li>
         
     </ul>
     

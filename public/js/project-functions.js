@@ -44,7 +44,7 @@ function hideCart(){
 
 function toggleMobileCategories(){
     
-    $("nav ul").slideToggle();
+    $("#header ul").slideToggle();
 }
 
 function adjustMainTag(){

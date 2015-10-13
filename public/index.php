@@ -3,6 +3,13 @@
     $pageTitle = "Home";
     $scripts = ["slider","search"];
     include ('php/modules/_header.php');
+
+    // Instagram
+    require '../includes/instagram/src/Instagram.php';
+    use MetzWeb\Instagram\Instagram;
+    $instagram = new Instagram('9ee2e14b99ad4b0fa41ff25ec60e03af');
+    $result = $instagram->getUserMedia("210983064",6);   
+
 ?>
 
 
@@ -13,9 +20,9 @@
         <section class="row">
         
             <div id="hero-slider" class="col-xs-12">
-                <div class="slide slide1 scale100"></div>
-                <div class="slide slide2"></div>
-                <div class="slide slide3"></div>
+                <div id="slide-1" class="slide" style="display: block;"><a href="catalogue"><img src="assets/images/home-banner/1.jpg" id="img-1" class="img-responsive"></a></div>
+                <div id="slide-2" class="slide"><a href="catalogue?&artist=16"><img src="assets/images/home-banner/2.jpg" id="img-2" class="img-responsive"></a></div>
+                <div id="slide-3" class="slide"><a href="catalogue?category=7"><img src="assets/images/home-banner/3.jpg" id="img-3" class="img-responsive"></a></div>
             </div>
         
         </section>
@@ -30,11 +37,11 @@
         </section>
         
         <section class="row">
-        
+        <a href="custom-printing.php">
             <div id="banner-1" class="col-xs-12">
-                
+                <img src="assets/images/home-banner/home-banner-1.png" class="img-responsive">
             </div>    
-        
+        </a>
         </section>
     </div> <!-- end fluid container -->
         
@@ -78,9 +85,9 @@
                 $product['price'] = $row['surcharge']+$row['basePrice'];
                 $product['newFlag'] = $row['newFlag'];
                 $product['artist_id'] = $row['artist_id'];
-                 $product['template_id'] = $row['template_id'];
+                $product['template_id'] = $row['template_id'];
               
-                    echo displayProduct($product);
+                 echo displayProduct($product);
 
                 
             }
@@ -91,9 +98,11 @@
           
             
         </section>
-        
-        <hr>
+        </div> <!-- end container -->
     
+        <hr>
+        
+        <div class="container-fluid">
         <section class="row">
             
             <h2 class="col-xs-12"><a href="artists.php">FEATURED ARTISTS</a></h2>
@@ -105,7 +114,7 @@
                  while($row = mysqli_fetch_assoc($artistResult)){
             ?>  
             
-            <div class="col-xs-6 col-sm-3">
+            <div class="col-xs-6 col-sm-6 col-md-3">
                 <div class="artist-wrapper"><a href="catalogue?artist=<?php   echo $row['id']; ?>"><img src="assets/images/artist/<?php   echo $row['id']; ?>.jpg"  class="img-responsive"></a></div>
             </div>
 
@@ -130,14 +139,33 @@
         
             <h2 class="col-xs-12"><a href="https://instagram.com/theclubofoddvolumes" target="_blank">@theclubofoddvolumes</a> </h2>
             
-            <div class="col-xs-6 col-sm-4 col-md-2"><a href="#"><img src="assets/image-placeholders/instagram1.png" class="img-responsive"></a></div>
-            <div class="col-xs-6 col-sm-4 col-md-2"><a href="#"><img src="assets/image-placeholders/instagram2.png" class="img-responsive"></a></div>
-            <div class="col-xs-6 col-sm-4 col-md-2"><a href="#"><img src="assets/image-placeholders/instagram3.png" class="img-responsive"></a></div>
-            <div class="col-xs-6 col-sm-4 col-md-2"><a href="#"><img src="assets/image-placeholders/instagram4.png" class="img-responsive"></a></div>
-            <div class="col-xs-6 col-sm-4 col-md-2"><a href="#"><img src="assets/image-placeholders/instagram5.png" class="img-responsive"></a></div>
-            <div class="col-xs-6 col-sm-4 col-md-2"><a href="#"><img src="assets/image-placeholders/instagram6.png" class="img-responsive"></a></div>
+            <?php
 
-        
+            foreach ($result->data as $media) {
+                
+                $link = $media->link;
+                
+                $content = "<div class='col-xs-4 col-sm-4 col-md-2'><a href='{$link}' target='_blank'>";
+                // output media
+                if ($media->type === 'video') {
+                    // video
+                    $poster = $media->images->low_resolution->url;
+                    $source = $media->videos->standard_resolution->url;
+                    $content .= "<video class=\"media video-js vjs-default-skin\" width=\"250\" height=\"250\" poster=\"{$poster}\"
+                           data-setup='{\"controls\":true, \"preload\": \"auto\"}'>
+                             <source src=\"{$source}\" type=\"video/mp4\" />
+                           </video>";
+                } else {
+                    // image
+                    $image = $media->images->low_resolution->url;
+                    $content .= "<img class='img-responsive' src=\"{$image}\"/>";
+                }
+               
+                echo $content . '</a></div>';
+            }
+
+?>
+           
         
         </section>
         
