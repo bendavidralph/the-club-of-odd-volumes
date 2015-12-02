@@ -20,9 +20,35 @@
         <section class="row">
         
             <div id="hero-slider" class="col-xs-12">
-                <div id="slide-1" class="slide" style="display: block;"><a href="catalogue"><img src="assets/images/home-banner/1.jpg" id="img-1" class="img-responsive"></a></div>
-                <div id="slide-2" class="slide"><a href="catalogue?&artist=16"><img src="assets/images/home-banner/2.jpg" id="img-2" class="img-responsive"></a></div>
-                <div id="slide-3" class="slide"><a href="catalogue?category=7"><img src="assets/images/home-banner/3.jpg" id="img-3" class="img-responsive"></a></div>
+            <?php
+                $query = "SELECT * FROM sliderLinks ORDER BY slideNumber";
+                $links = queryDB($query);
+                
+                while($row = mysqli_fetch_assoc($links)){
+                        
+                    if($row['slideNumber'] == 1){
+                        $visibility = "display: block;";
+                    }else{
+                        $visibility = "";
+                    }
+                    
+                    if($row['openNewWindow'] == 1){
+                        $target = "_blank";
+                    }else{
+                        $target = "_self";
+                    }
+                    
+                    echo "<div id='slide-{$row['slideNumber']}' class='slide' style='{$visibility}'><a href='{$row['url']}' target='{$target}'><img src='assets/images/home-banner/{$row['slideNumber']}.jpg' id='img-{$row['slideNumber']}' class='img-responsive'></a></div>";
+                    
+                }
+                    
+
+                mysqli_free_result($links);    
+                
+                
+            ?>    
+                
+             
             </div>
         
         </section>
@@ -173,8 +199,31 @@
     </div><!-- end of container -->
     
     
-     
+       
+    
+        <?php
+                if(isset($_GET['login']) && $_GET['login'] == 'success'){
+                ?><div id="login" class="static-message success slide-in">
+                         You have successfully logged in 
+                  </div>
+        <?php  
+                }
+
+        ?>
+    
+        <?php
+                if(isset($_GET['logout']) && $_GET['logout'] == 'true'){
+                ?>  <div id="logout" class="static-message error slide-in">
+                    You have been successfully logged out
+                    </div>
+        <?php  
+                }
+
+        ?>
+        
+        
+        
         
 </main>
-  
+ 
 <?php   include('php/modules/_footer.php'); ?>

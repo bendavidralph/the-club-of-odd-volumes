@@ -2,12 +2,12 @@
          
               <div class="form-group">
                 <label for="exampleInputEmail1">Full Name: *</label>
-                <input type="text" class="form-control" name="fullName" placeholder="John Smith" required="true" value="<?php   echo $customer["fullName"]; ?>">
+                <input type="text" class="form-control validate" name="fullName" placeholder="John Smith" value="<?php   echo $customer["fullName"]; ?>">
               </div>
          
             <div class="form-group">
                 <label for="exampleInputEmail1">Email Address: *</label>
-                <input type="text" class="form-control" name="email" placeholder="email@domain.com" required="true" value="<?php   echo $customer["email"]; ?>">
+                <input type="text" class="form-control validate" name="email" placeholder="email@domain.com" value="<?php   echo $customer["email"]; ?>">
               </div>
          
             <div class="form-group">
@@ -18,7 +18,7 @@
             <h3>Address</h3>    
               <div class="form-group">
                 <label for="exampleInputEmail1">Address Line 1: *</label>
-                <input type="text" class="form-control" name="line1" placeholder="Street Address, PO Box, Company Name, C/O" required="true" value="<?php   echo $customer["line1"]; ?>">
+                <input type="text" class="form-control validate" name="line1" placeholder="Street Address, PO Box, Company Name, C/O" value="<?php   echo $customer["line1"]; ?>">
               </div>    
                 
              <div class="form-group">
@@ -28,7 +28,7 @@
                 
              <div class="form-group">
                 <label for="exampleInputEmail1">City/Suburb: *</label>
-                <input type="text" class="form-control" name="city" placeholder="" required="true"  value="<?php   echo $customer["city"]; ?>">
+                <input type="text" class="form-control validate" name="city" placeholder=""  value="<?php   echo $customer["city"]; ?>">
               </div>       
                 
             <div class="form-group">
@@ -61,5 +61,7 @@
           <input class="btn btn-default" type="submit" value="Next: Shipping Method">     
 </form>   
             
-            
+      <div id="mandatory-field-message" class="static-message error">
+            Whoops! Please complete all mandatory fields before continuing
+     </div>      
         

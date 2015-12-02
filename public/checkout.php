@@ -59,7 +59,7 @@
                 <input type="text" class="form-control" id="discount-code" placeholder="Discount Code">
               </div>
               
-               <input class="btn btn-default" type="button" value="Apply">
+               <input id="apply-btn" class="btn btn-default" type="button" value="Apply">
             </form>
             
             <hr>
@@ -86,8 +86,11 @@
             <hr>
             
             <section class="row">
+                <div id="total" class=" col-xs-6">Discount</div>
+                <div id="total" class="value col-xs-6"> - $<?php echo $cartValues['discount']; ?></div>
                 <div id="total" class=" col-xs-6">Total</div>
-                <div id="total-value" class="value col-xs-6">$<?php   echo number_format($cartValues['product']+$cartValues['shipping'],2);  ?></div>
+              
+                <div id="total-value" class="value col-xs-6">$<?php   echo number_format($cartValues['product']+$cartValues['shipping']-$cartValues['discount'],2);  ?></div>
             </section>
             
           

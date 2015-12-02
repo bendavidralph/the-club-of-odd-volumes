@@ -11,38 +11,61 @@
 
     // Get price from order table
     $customerOrder = queryById('customerOrder',$_SESSION['order_id']);
-//    $total = $customerOrder['total'];
-    $total = 1;
+    $total = $customerOrder['total'];
 
+    if($total > 0){
  
-     if($_POST["payment_method_nonce"]){
-                $nonce = $_POST["payment_method_nonce"];
-                $result = executePayment($nonce,$total);
-     }
-
+         if($_POST["payment_method_nonce"]){
+                    $nonce = $_POST["payment_method_nonce"];
+                    $result = executePayment($nonce,$total);
+         }
+    
+    
     
     // Succesfull if = 1
     $success = $result->success;
-
+    
+    }else{
+        $success = 1;
+    }
+    
     if($success == 1){
         
-//        echo "<pre>";    
-//       print_r($result); 
-//        echo "<pre>";
         
-      saveTransaction($_SESSION['order_id']);
-            
- 
+
+        saveTransaction($_SESSION['order_id']);
         sendCustomerEmail($_SESSION['order_id']);
         sendPurchaseEmail($_SESSION['order_id']);
+        
+        if(isset($_SESSION['discount'])){
+            
+            if($_SESSION['discount']['type'] == "voucher"){
+              
+                $voucherApplied = $_SESSION['discount']['voucherApplied'];
+                
+                // Deduct Value 
+                $qry = "UPDATE discountCodes SET value = (value - '{$voucherApplied}') WHERE name = '{$_SESSION['discount']['name']}';";
+                $db = createDBConnection();
+                $result = mysqli_query($db,$qry);
+                if(!$result){
+                echo mysqli_error($db). "<br>";
+                die("Databse query failed");
+            
+        }
+        
+        mysqli_close($db);
+            }
+            
+        }
+        
 
 
         // Clear the Session
         session_destroy();
         
         // Redirect the user to Thank-you Screen
-        header("Location: ../../receipt.php"); 
-        
+       header("Location: ../../receipt.php?orderid={$_SESSION['order_id']}"); 
+//        
 
       
     

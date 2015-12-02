@@ -10,7 +10,7 @@
      
     $colours = getProductColours($template_id);
     
-    $product = '<div class="col-xs-6  col-sm-4 ">
+    $product = '<div class="col-xs-6  col-sm-4 heightFix">
                 <div class="product-wrapper">';
     
     if($productInfo['newFlag']){
@@ -23,8 +23,8 @@
         
     $product = $product. '<a href="product.php?id='.$id.'">
                     <div class="product-image">    
-                    <img src="assets/images/product/'.$id.'/SM/1.jpg" class="image-1 img-responsive">
-                    <img src="assets/images/product/'.$id.'/SM/2.jpg" class="image-2 img-responsive">
+                    <img src="https://theclubofoddvolumes.com/assets/images/product/'.$id.'/SM/1.jpg" class="image-1 img-responsive">
+                    <img src="https://theclubofoddvolumes.com/assets/images/product/'.$id.'/SM/2.jpg" class="image-2 img-responsive">
                     </div>
                     </a>
                     
@@ -233,6 +233,8 @@ function collectAndProccessFilters(){
         $total['customProduct'] = 0;
         $total['customQuant'] = 0;
         $total['customDiscount'] = 0;
+        $total['discount'] = 0;
+        
         
         if(isset($_SESSION['cart'])){
          
@@ -255,14 +257,25 @@ function collectAndProccessFilters(){
                     if(!($stock_id == "addon")){
                     
                     $stock =  queryById('stock',$stock_id); 
+                        
+                    if(isset($_SESSION['discount']) && $_SESSION['discount']['type'] == 'percentage'){  
+                        $discountValue = $_SESSION['discount']['value'];
+                    }else{
+                         $discountValue = 0;   
+                    }
                     
                     // Calculate Price x Quantitity 
                     $runningTotal = $stock["surcharge"] + $product["surcharge"] + $addon;
                     $runningTotal = $runningTotal * $quant;
                     
+                    // If there is a discount calculate it    
+                    $runningDiscount =   $runningTotal * $discountValue;
+                    $total['discount'] = $total['discount'] + $runningDiscount; 
+                    
                     // Add Price to Total
                     $total['product'] = $total['product'] + $runningTotal;
                     
+                        
                     // Calculate Weight 
                     $runningWeightTotal = $stock['weight'] * $quant;
                     $total['weight'] = $total['weight'] + $runningWeightTotal;
@@ -296,8 +309,14 @@ function collectAndProccessFilters(){
                     if(!($stock_id == "addon")){    
                     $stock =  queryById('stockCustom',$stock_id); 
 
-                    // Calculate Price x Quantitity 
-                    $runningTotal = $stock["surcharge"] + $addon;
+                        // Calculate Price x Quantitity 
+                        if(isset($_SESSION['user']) && $_SESSION['user'] == 'reseller'){
+                            $runningTotal = $stock["resellerRate"] + $addon;
+                        }else{
+                            $runningTotal = $stock["surcharge"] + $addon;
+                        }
+                        
+                    
                    
                     $runningTotal = $runningTotal * $quant;
                     
@@ -326,9 +345,10 @@ function collectAndProccessFilters(){
             }
             
             
-            
-             
-             if($counrty == "notSelected"){
+            if(isset($_SESSION['discount']) && $_SESSION['discount']['type'] == 'shipping'){  
+                        $total['shipping'] = $_SESSION['discount']['value'];
+            }else{
+                 if($counrty == "notSelected"){
                  
                  $total['shippingWarning'] = "TBD";
                  
@@ -345,9 +365,29 @@ function collectAndProccessFilters(){
              mysqli_free_result($weightResult);
              
              }
+                    
+            }
              
              
+            $purchasePrice = $total['product'] + $total['shipping'];
+            // Deduct Voucher 
+            if(isset($_SESSION['discount']) && $_SESSION['discount']['type'] == 'voucher'){
+                    
+                if($purchasePrice <= $_SESSION['discount']['value']){
+                    $total['discount'] = $purchasePrice;
+                    $_SESSION['discount']['voucherApplied'] = $purchasePrice;
+                }else{
+                    $total['discount'] = $_SESSION['discount']['value'];
+                    $_SESSION['discount']['voucherApplied'] =$_SESSION['discount']['value'];
+                    
+                }
+                 
+                
+                    
+            }
+            
             return $total;
+            
              
         }else{
          
@@ -522,9 +562,13 @@ function displaySizingPopUp($category_id){
                           $stockResult = queryDB($stockQuery);
                     
                          while($row = mysqli_fetch_assoc($stockResult)){
+                             
+                        if(isset($_SESSION['user']) && ($_SESSION['user'] == 'reseller') && $type == "custom"){
+                            $row["surcharge"] = $row["resellerRate"];
+                        }
                          
                         if(isset($productSurcharge)){
-                            $subTotal = $row["surcharge"]+$productSurcharge + $addon; 
+                            $subTotal = $row["surcharge"] + $productSurcharge + $addon; 
                         }else{
                             $subTotal = $row["surcharge"] + $addon;
                         }
@@ -586,6 +630,11 @@ function displaySizingPopUp($category_id){
 
 
     function calculateCustomDiscount($total,$quant){
+    
+     if(isset($_SESSION['user']) && ($_SESSION['user'] == 'reseller')){
+           
+     }else{    
+        
 
     if($quant < 5 ){
          $discount = 0;
@@ -610,7 +659,7 @@ function displaySizingPopUp($category_id){
 
       return $discount;  
         
-    }
+    }}
         
 ?>
 

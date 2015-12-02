@@ -1,12 +1,12 @@
 
 <?php
 
-function sendreceipt($html,$toEmail,$toName){
+function sendreceipt($html,$toEmail,$toName, $subject = 'The Club of Odd Volumes - Thank you for your order'){
     try {
     $mandrill = new Mandrill('GJyvYpd7RDiY_WN-ZSB29g');
     $message = array(
         'html' => $html,
-        'subject' => 'The Club of Odd Volumes - Thank you for your order',
+        'subject' => $subject,
         'from_email' => 'shop@theclubofoddvolumes.com',
         'from_name' => 'The Club of Odd Volumes',
         'to' => array(

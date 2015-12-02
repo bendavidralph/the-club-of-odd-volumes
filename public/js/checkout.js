@@ -1,6 +1,22 @@
 $(document).ready(function(){
   
-
+    $("#apply-btn").click(function(){
+       
+        discountCode = $("#discount-code").val();
+        discountCode = $.trim(discountCode);
+        
+        if(discountCode != ''){
+        processDiscount(discountCode); 
+        }else{
+            alert("Please enter a discount code");   
+        }
+        
+    });
+    
+    $("#ZeroDollarCheckout").click(function(){
+       window.location = "php/POST/proccessPayment";
+        
+    })
     
     
     $("form").submit(function( event ) {
@@ -17,6 +33,12 @@ $(document).ready(function(){
                $("#shippingRegion-error").addClass("has-error");
         }else{
         
+                 
+        // Test for all mandatory fields  
+        validate = validateMandatoryFields(); 
+       
+         if(validate == 'success'){
+         $("#mandatory-field-message").removeClass("slide-in");   
             // Get the valuse of every element in the form
             var fields = $(this).serialize();
 
@@ -24,10 +46,14 @@ $(document).ready(function(){
                 window.location = "checkout?page=shipping";
             });
          
+        }else{
+         
+             $("#mandatory-field-message").addClass("slide-in");
+            
         }
      
    
-    });
+        }});
     
     $("select[name*='shippingRegion']").change(function(){
        
@@ -56,6 +82,37 @@ $(document).ready(function(){
 
 
 });
+
+function validateMandatoryFields(){
+    
+    validate = 'success';
+    
+    $(".validate").each(function(){
+        
+        field  = $(this).val();
+        field = field.replace(/ /g,'');
+        if(field == ''){
+            //stop form submit
+            validate = 'fail';
+            
+            $(this).closest(".form-group").addClass("has-error");
+            
+        }else{
+            $(this).closest(".form-group").removeClass("has-error");
+        }
+        
+        
+        
+      
+    });
+    
+    return validate;
+    
+    
+    
+    
+}
+
 
 function updateShipping(countrySelection){
  
@@ -106,3 +163,24 @@ function updateCountryField(countrySelection){
         }
 }
 
+
+function processDiscount(discountCode){
+    
+    
+        $.post("php/POST/apply-discount",{discount:discountCode},function(data){
+            
+          data = $.trim(data);
+            
+        if(data == 'success'){
+            window.location.replace("checkout");
+        }else{
+            alert("Sorry this is not a valid discount code");
+        }
+            
+            
+        });
+    
+    
+    
+    
+}

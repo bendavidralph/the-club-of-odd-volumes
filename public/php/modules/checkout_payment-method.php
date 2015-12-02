@@ -10,7 +10,7 @@
     $order['orderStatus'] = 'incomplete';
     
     $total = calculateCartValue($order['shipping_id']);
-    $order['total'] = $total['product'] + $total['shipping'];
+    $order['total'] = $total['product'] + $total['shipping'] - $total['discount'] ;
 
    $order_id = insert_DB('customerOrder',$order);
         
@@ -83,6 +83,12 @@ All transactions are secure and encrypted. Credit card information is never stor
 
 <br><br>
 
+<?php 
+
+
+    if($order['total'] > 0){
+
+?>
 
 <form id="checkout" method="post" action="php/POST/proccessPayment">
   <div id="payment-form"></div>
@@ -99,5 +105,21 @@ All transactions are secure and encrypted. Credit card information is never stor
 braintree.setup(clientToken, "dropin", {
   container: "payment-form"
 });
+    
+<?php
+
+}else{
+    
+?>  
+    
+
+  <button id="ZeroDollarCheckout" class="btn btn-default" > Pay $0  </button>
+    
+
+
+<?php
+    }
+                         
+?>
     
 </script>

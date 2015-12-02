@@ -1,0 +1,60 @@
+<form id="img-upload" method="post" enctype="multipart/form-data" action='../../php/POST/upload-image'>
+                <input type="file" name="imagefile" id="imagefile1" class="upload-trigger"/>
+                <input type="hidden" name="image-name" id="image-name">
+ 
+   <span class="loading">... Uploading </span>
+</form>
+
+
+
+<script src="../jquery-1.11.3.min.js"></script>
+<script src="../jquery.form.js"></script>
+
+<style>
+
+    .loading{
+        display: none;   
+    }
+    
+
+
+</style>
+
+<script>
+
+    $(document).ready(function(){
+   
+     // Image Uplaod 
+        $('input[type=file]').change(function() {
+             $(".loading").fadeIn();
+               uploadImage();
+
+        });    
+        
+    });
+
+
+function uploadImage(){
+
+    
+            $("form").ajaxForm({
+            success: function(response) {
+                
+               console.log(response);
+                var obj = jQuery.parseJSON(response);
+                
+          
+                if(obj.error){
+                  alert(obj.error);  
+                }else{
+              
+                    $("#image-name").val(obj.imagename);
+                      $(".loading").fadeOut();
+                }}}).submit();
+      
+           
+ 
+}
+
+    
+</script>

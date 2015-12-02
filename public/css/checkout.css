@@ -22,3 +22,37 @@ hr{
     text-align: right;
     font-family: HelveticaNeueLTPro-Bd;    
 }
+
+.static-message{
+    background-color: #ffffff;
+    position: fixed;
+    width: 100%;
+    bottom:-150px;
+    left:0;
+    text-align: center;
+    padding:50px 0;
+    z-index: 100;
+
+    
+    -webkit-transition: bottom 1s; /* Safari */
+    transition: bottom 1s;
+    
+}
+
+.error{
+    border-top:4px solid #ed1c24;
+}
+
+.success{
+     border-top:4px solid #acd373; 
+
+}
+
+.slide-in{
+
+    bottom:0;
+
+    -webkit-transition: bottom 1s; /* Safari */
+    transition: bottom 1s;
+    
+}

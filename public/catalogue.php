@@ -99,7 +99,7 @@
         
         
         <!-- Results -->
-        <section class="row">
+        <section class="row heightFixRow">
          
         <?php    
 
@@ -152,17 +152,28 @@
 
                 // Set counter for Ads
                 $addCount = $offset;
+           
                 $selectedCat = str_replace("AND pt.category_id = ","",$selectedCat);
                 
                 foreach ($productsToDisplay as $value){
                     
-                    $addCount ++;
-                    displayAd($addCount,$selectedCat);   
                     
-                    echo displayProduct($value);
+               
+                    
+                    $addCount ++;
+                    
+  
+                    
+                   
+                        echo displayProduct($value);
+             
+                    
+                    
+                  
                    
                     
                 }
+               
             
             }else{
 ?>             
@@ -243,50 +254,5 @@
     
     </main>
 
-
+<?php $scripts = ["catalogue"]; ?>
 <?php   include('php/modules/_footer.php'); ?>
-
-<?php
-
-    function displayAd($addCount,$cat){
-        
-      
-//    if($addCount == 9 || $addCount == 34 || $addCount == 47 || $addCount == 65){    
-        
-?>        
-     
-<!--
-    <div id="custom-ad" class="col-xs-6  col-sm-4">
-        
-        <a href=custom-printing.php>
-        <img src="assets/images/search-adds/<?php echo $addCount ?>.jpg" class="img-responsive">
-        </a>
-    </div>
--->
-
-<?php     
-//    }
-//        
-//if($addCount == 19){    
-//    
-//    if($cat == 3 || $cat == 2 || $cat == 1){
-//           
-//    $addCount = $addCount . "-" . $cat;
-      
-?>        
-     
-<!--
-      <div id="custom-ad" class="col-xs-6  col-sm-4">
-        
-        <a href=custom-printing.php>
-        <img src="assets/images/search-adds/<?php echo $addCount ?>.jpg" class="img-responsive">
-        </a>
-    </div>
--->
-
-<?php     
-//        }
-//        }        
-    }
-
-?>

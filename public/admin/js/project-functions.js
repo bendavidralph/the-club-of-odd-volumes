@@ -8,7 +8,10 @@ $(document).ready(function(){
         var fields = $(this).serialize({ checkboxesAsBools: true });
         
         $.post( "php/POST/insert-product?table="+table,fields, function( data ) {    
-            location.reload();   
+            location.reload();  
+            
+//            $("#results").html(data);
+            
         });
          
             

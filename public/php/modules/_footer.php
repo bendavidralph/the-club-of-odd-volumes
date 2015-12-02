@@ -31,6 +31,10 @@
                     <li><a href="custom-printing-bulk-pricing.php">CUSTOM PRINTING  BULK PRICING</a></li>
                     <li class="divider">/</li>
                     <li><a href="file-set-up-tips.php">FILE SET UP TIPS</a></li>
+                    <li class="divider">/</li>
+                    <li><a href="reseller-login.php">RESELLER LOGIN</a></li>
+                    
+                   
                 </ul>
             </nav>
     

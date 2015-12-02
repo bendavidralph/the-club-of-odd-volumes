@@ -48,7 +48,7 @@
       ga('create', 'UA-35008170-1', 'auto');
       ga('send', 'pageview');
 
-</script>
+    </script>
 
 </head>  
     
@@ -108,6 +108,18 @@
                 ?>
                 <li class="divider">///</li>
                 <li><a href="custom-printing.php">CUSTOM PRINTING</a></li>
+                
+                <?php
+
+                if(isset($_SESSION['user']) && $_SESSION['user'] == 'reseller'){
+                ?>
+                <li class="divider">///</li>
+                <li><a href="logout.php">LOGOUT</a></li>
+                <?php
+                }
+
+                ?>
+                
             </ul>
         </nav>
 

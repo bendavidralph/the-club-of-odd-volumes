@@ -76,10 +76,25 @@
     // ################# GET STOCK INFORMATION #####################
 
 
-
-
-
-$query = "
+if(isset($_SESSION['user']) && ($_SESSION['user'] == 'reseller')){
+       
+    $query = "
+        SELECT 
+        s.id as id,
+        s.sizeCategory as sizeCategory,
+        s.size as size,
+        s.color as color,
+        s.resellerRate as surcharge
+        FROM `stockCustom` as s
+        INNER JOIN templateStockIndex as tsi
+        ON s.id = tsi.stock_id
+        WHERE tsi.template_id = ".$productTemplate_id."
+        AND inStock IS NOT NULL
+        ";
+    
+}else{
+     
+    $query = "
         SELECT 
         s.id as id,
         s.sizeCategory as sizeCategory,
@@ -92,6 +107,10 @@ $query = "
         WHERE tsi.template_id = ".$productTemplate_id."
         AND inStock IS NOT NULL
         ";
+}
+
+
+
 
 $productResult = queryDB($query);
     
